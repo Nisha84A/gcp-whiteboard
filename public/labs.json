@@ -1,0 +1,20 @@
+[
+  { "subjid": "SUBJ-001", "lbtest": "ALT", "lbstresn": 28,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-001", "lbtest": "ALT", "lbstresn": 35,  "lbstresu": "U/L", "lbdy": 15, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-001", "lbtest": "ALT", "lbstresn": 42,  "lbstresu": "U/L", "lbdy": 30, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-002", "lbtest": "ALT", "lbstresn": 22,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-002", "lbtest": "ALT", "lbstresn": 26,  "lbstresu": "U/L", "lbdy": 15, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-002", "lbtest": "ALT", "lbstresn": 72,  "lbstresu": "U/L", "lbdy": 30, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-003", "lbtest": "ALT", "lbstresn": 45,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-003", "lbtest": "ALT", "lbstresn": 92,  "lbstresu": "U/L", "lbdy": 15, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-004", "lbtest": "ALT", "lbstresn": 18,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-004", "lbtest": "ALT", "lbstresn": 20,  "lbstresu": "U/L", "lbdy": 15, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-005", "lbtest": "ALT", "lbstresn": 31,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-005", "lbtest": "ALT", "lbstresn": 39,  "lbstresu": "U/L", "lbdy": 15, "lbnrlo": 7, "lbnrhi": 40 },
+  { "subjid": "SUBJ-001", "lbtest": "AST", "lbstresn": 24,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 10, "lbnrhi": 40 },
+  { "subjid": "SUBJ-001", "lbtest": "AST", "lbstresn": 31,  "lbstresu": "U/L", "lbdy": 30, "lbnrlo": 10, "lbnrhi": 40 },
+  { "subjid": "SUBJ-002", "lbtest": "AST", "lbstresn": 20,  "lbstresu": "U/L", "lbdy":  1, "lbnrlo": 10, "lbnrhi": 40 },
+  { "subjid": "SUBJ-002", "lbtest": "AST", "lbstresn": 58,  "lbstresu": "U/L", "lbdy": 30, "lbnrlo": 10, "lbnrhi": 40 },
+  { "subjid": "SUBJ-001", "lbtest": "Creatinine", "lbstresn": 0.9, "lbstresu": "mg/dL", "lbdy":  1, "lbnrlo": 0.6, "lbnrhi": 1.2 },
+  { "subjid": "SUBJ-002", "lbtest": "Creatinine", "lbstresn": 1.1, "lbstresu": "mg/dL", "lbdy":  1, "lbnrlo": 0.6, "lbnrhi": 1.2 }
+]

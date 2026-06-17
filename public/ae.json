@@ -1,0 +1,16 @@
+[
+  { "subjid": "SUBJ-001", "aeterm": "Headache",   "aesev": "MILD",     "aestdy": 3,  "aeendy": 7,  "aerel": "POSSIBLY RELATED" },
+  { "subjid": "SUBJ-001", "aeterm": "Nausea",     "aesev": "MILD",     "aestdy": 5,  "aeendy": 9,  "aerel": "RELATED" },
+  { "subjid": "SUBJ-002", "aeterm": "Fatigue",    "aesev": "MODERATE", "aestdy": 8,  "aeendy": 18, "aerel": "POSSIBLY RELATED" },
+  { "subjid": "SUBJ-002", "aeterm": "Dizziness",  "aesev": "MILD",     "aestdy": 12, "aeendy": 15, "aerel": "NOT RELATED" },
+  { "subjid": "SUBJ-003", "aeterm": "Headache",   "aesev": "SEVERE",   "aestdy": 10, "aeendy": 28, "aerel": "RELATED" },
+  { "subjid": "SUBJ-003", "aeterm": "Vomiting",   "aesev": "SEVERE",   "aestdy": 14, "aeendy": 30, "aerel": "RELATED" },
+  { "subjid": "SUBJ-004", "aeterm": "Rash",       "aesev": "MILD",     "aestdy": 6,  "aeendy": 12, "aerel": "NOT RELATED" },
+  { "subjid": "SUBJ-005", "aeterm": "Insomnia",   "aesev": "MILD",     "aestdy": 4,  "aeendy": 20, "aerel": "POSSIBLY RELATED" },
+  { "subjid": "SUBJ-005", "aeterm": "Nausea",     "aesev": "MODERATE", "aestdy": 15, "aeendy": 22, "aerel": "RELATED" },
+  { "subjid": "SUBJ-006", "aeterm": "Headache",   "aesev": "MILD",     "aestdy": 2,  "aeendy": 5,  "aerel": "RELATED" },
+  { "subjid": "SUBJ-007", "aeterm": "Fatigue",    "aesev": "MODERATE", "aestdy": 7,  "aeendy": 35, "aerel": "NOT RELATED" },
+  { "subjid": "SUBJ-007", "aeterm": "Dizziness",  "aesev": "MODERATE", "aestdy": 20, "aeendy": 40, "aerel": "POSSIBLY RELATED" },
+  { "subjid": "SUBJ-008", "aeterm": "Rash",       "aesev": "MILD",     "aestdy": 9,  "aeendy": 14, "aerel": "NOT RELATED" },
+  { "subjid": "SUBJ-008", "aeterm": "Nausea",     "aesev": "MILD",     "aestdy": 3,  "aeendy": 6,  "aerel": "RELATED" }
+]

@@ -1,0 +1,10 @@
+[
+  { "id": "SUBJ-001", "arm": "Treatment A", "age": 45, "sex": "M", "site": "Site 01", "status": "Completed",    "enrol": -21, "vital": "ALIVE" },
+  { "id": "SUBJ-002", "arm": "Treatment B", "age": 52, "sex": "F", "site": "Site 01", "status": "Completed",    "enrol": -18, "vital": "ALIVE" },
+  { "id": "SUBJ-003", "arm": "Treatment A", "age": 38, "sex": "F", "site": "Site 02", "status": "Discontinued", "enrol": -14, "vital": "DEAD",  "dthdy": 32, "dthcaus": "Treatment-Related AE" },
+  { "id": "SUBJ-004", "arm": "Placebo",     "age": 61, "sex": "M", "site": "Site 02", "status": "Completed",    "enrol": -30, "vital": "ALIVE" },
+  { "id": "SUBJ-005", "arm": "Treatment B", "age": 47, "sex": "F", "site": "Site 03", "status": "Completed",    "enrol": -12, "vital": "ALIVE" },
+  { "id": "SUBJ-006", "arm": "Treatment A", "age": 55, "sex": "M", "site": "Site 03", "status": "Completed",    "enrol": -28, "vital": "ALIVE" },
+  { "id": "SUBJ-007", "arm": "Placebo",     "age": 43, "sex": "F", "site": "Site 01", "status": "Discontinued", "enrol":  -9, "vital": "DEAD",  "dthdy": 45, "dthcaus": "Disease Progression" },
+  { "id": "SUBJ-008", "arm": "Treatment B", "age": 59, "sex": "M", "site": "Site 02", "status": "Completed",    "enrol": -25, "vital": "ALIVE" }
+]

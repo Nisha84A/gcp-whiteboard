@@ -1,0 +1,86 @@
+import { CatalogItem } from '@/types';
+
+export function buildCatalogItems(): CatalogItem[] {
+  return [
+    {
+      id: 'subject-listing',
+      label: 'Subject Listing',
+      description: 'Demographics & study status',
+      type: 'subject-listing',
+      category: 'SUBJECT',
+      visualizationType: 'table',
+    },
+    {
+      id: 'patient-profile',
+      label: 'Patient Profile',
+      description: 'Full subject cross-domain view',
+      type: 'patient-profile',
+      category: 'SUBJECT',
+      visualizationType: 'table',
+    },
+    {
+      id: 'ae-timeline',
+      label: 'AE Timeline',
+      description: 'Adverse event swim lane',
+      type: 'ae-timeline',
+      category: 'SAFETY',
+      visualizationType: 'chart',
+    },
+    {
+      id: 'ae-summary',
+      label: 'AE Summary',
+      description: 'AE term frequency chart',
+      type: 'ae-summary',
+      category: 'SAFETY',
+      visualizationType: 'chart',
+    },
+    {
+      id: 'conmed',
+      label: 'CONMED',
+      description: 'Concomitant medications',
+      type: 'conmed',
+      category: 'MEDICATIONS',
+      visualizationType: 'table',
+    },
+    {
+      id: 'exposure',
+      label: 'Exposure',
+      description: 'Drug exposure records',
+      type: 'exposure',
+      category: 'MEDICATIONS',
+      visualizationType: 'table',
+    },
+    {
+      id: 'med-history',
+      label: 'Med History (MH)',
+      description: 'Prior conditions by subject',
+      type: 'med-history',
+      category: 'MEDICAL HISTORY',
+      visualizationType: 'table',
+    },
+    {
+      id: 'lab-trend',
+      label: 'Lab Trend',
+      description: 'ALT trend — all subjects',
+      type: 'lab-trend',
+      category: 'LABS & VITALS',
+      visualizationType: 'chart',
+    },
+    {
+      id: 'lab-listing',
+      label: 'Lab Listing',
+      description: 'Lab results table with flags',
+      type: 'lab-listing',
+      category: 'LABS & VITALS',
+      visualizationType: 'table',
+    },
+    {
+      id: 'vital-signs',
+      label: 'Vital Signs',
+      description: 'BP, HR over time',
+      type: 'vital-signs',
+      category: 'LABS & VITALS',
+      visualizationType: 'chart',
+    },
+  ];
+}

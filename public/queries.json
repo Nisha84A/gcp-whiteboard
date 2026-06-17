@@ -1,0 +1,35 @@
+[
+  {
+    "id": "Q001",
+    "subjid": "SUBJ-002",
+    "domain": "LB",
+    "variable": "ALT",
+    "issue": "ALT 72 U/L (1.8× ULN) at Day 30. Please confirm lab result and assess for potential drug-induced hepatotoxicity. Monitor closely.",
+    "priority": "HIGH",
+    "status": "OPEN",
+    "raisedBy": "Dr. M. Reyes",
+    "raisedDate": "2026-05-14"
+  },
+  {
+    "id": "Q002",
+    "subjid": "SUBJ-003",
+    "domain": "AE",
+    "variable": "Headache (SEVERE)",
+    "issue": "SEVERE headache assessed RELATED to study drug (Day 7–21). Concurrent SEVERE vomiting (Day 9–15). Subject discontinued Day 32. Request detailed SAE narrative and causality documentation.",
+    "priority": "CRITICAL",
+    "status": "OPEN",
+    "raisedBy": "Dr. M. Reyes",
+    "raisedDate": "2026-05-12"
+  },
+  {
+    "id": "Q003",
+    "subjid": "SUBJ-007",
+    "domain": "LB",
+    "variable": "ALT / AST",
+    "issue": "ALT 115 U/L and AST 105 U/L at Day 45 (final observation). Subject DECEASED (Disease Progression, Day 45). Request Hy's Law assessment and causality review.",
+    "priority": "CRITICAL",
+    "status": "OPEN",
+    "raisedBy": "Dr. M. Reyes",
+    "raisedDate": "2026-05-11"
+  }
+]

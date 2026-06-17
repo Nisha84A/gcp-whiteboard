@@ -1,0 +1,15 @@
+[
+  { "subjid": "SUBJ-001", "cmtrt": "Metformin",      "cmdose": 500,  "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -180, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-001", "cmtrt": "Lisinopril",     "cmdose": 10,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -365, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-002", "cmtrt": "Atorvastatin",   "cmdose": 20,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -90,  "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-003", "cmtrt": "Metformin",      "cmdose": 1000, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -200, "cmendy": 30,  "cmongo": false },
+  { "subjid": "SUBJ-003", "cmtrt": "Ondansetron",    "cmdose": 4,    "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": 14,   "cmendy": 28,  "cmongo": false },
+  { "subjid": "SUBJ-004", "cmtrt": "Amlodipine",     "cmdose": 5,    "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -400, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-004", "cmtrt": "Aspirin",        "cmdose": 81,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -500, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-005", "cmtrt": "Omeprazole",     "cmdose": 20,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -60,  "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-006", "cmtrt": "Metformin",      "cmdose": 750,  "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -150, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-006", "cmtrt": "Lisinopril",     "cmdose": 20,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -300, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-007", "cmtrt": "Ibuprofen",      "cmdose": 400,  "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": 7,    "cmendy": 35,  "cmongo": false },
+  { "subjid": "SUBJ-008", "cmtrt": "Atorvastatin",   "cmdose": 40,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -120, "cmendy": 60,  "cmongo": true },
+  { "subjid": "SUBJ-008", "cmtrt": "Metoprolol",     "cmdose": 25,   "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -250, "cmendy": 60,  "cmongo": true }
+]

@@ -1,0 +1,10 @@
+[
+  { "subjid": "SUBJ-001", "extrt": "Drug ABC", "exdose": 50, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD",  "exstdy": 1, "exendy": 84, "excomp": true  },
+  { "subjid": "SUBJ-002", "extrt": "Drug XYZ", "exdose": 75, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "BID", "exstdy": 1, "exendy": 84, "excomp": true  },
+  { "subjid": "SUBJ-003", "extrt": "Drug ABC", "exdose": 50, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD",  "exstdy": 1, "exendy": 32, "excomp": false },
+  { "subjid": "SUBJ-004", "extrt": "Placebo",  "exdose":  0, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD",  "exstdy": 1, "exendy": 84, "excomp": true  },
+  { "subjid": "SUBJ-005", "extrt": "Drug XYZ", "exdose": 75, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "BID", "exstdy": 1, "exendy": 84, "excomp": true  },
+  { "subjid": "SUBJ-006", "extrt": "Drug ABC", "exdose": 50, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD",  "exstdy": 1, "exendy": 84, "excomp": true  },
+  { "subjid": "SUBJ-007", "extrt": "Placebo",  "exdose":  0, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD",  "exstdy": 1, "exendy": 45, "excomp": false },
+  { "subjid": "SUBJ-008", "extrt": "Drug XYZ", "exdose": 75, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "BID", "exstdy": 1, "exendy": 84, "excomp": true  }
+]

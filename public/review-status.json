@@ -1,0 +1,10 @@
+{
+  "SUBJ-001": { "status": "REVIEWED",      "reviewer": "Dr. M. Reyes", "reviewedDate": "2026-05-15" },
+  "SUBJ-002": { "status": "DATA_CHANGED",  "reviewer": "Dr. M. Reyes", "reviewedDate": "2026-05-14" },
+  "SUBJ-003": { "status": "QUERIED",       "reviewer": "Dr. M. Reyes", "reviewedDate": "2026-05-12" },
+  "SUBJ-004": { "status": "NOT_REVIEWED",  "reviewer": null,            "reviewedDate": null },
+  "SUBJ-005": { "status": "NOT_REVIEWED",  "reviewer": null,            "reviewedDate": null },
+  "SUBJ-006": { "status": "REVIEWED",      "reviewer": "Dr. M. Reyes", "reviewedDate": "2026-05-15" },
+  "SUBJ-007": { "status": "QUERIED",       "reviewer": "Dr. M. Reyes", "reviewedDate": "2026-05-11" },
+  "SUBJ-008": { "status": "NOT_REVIEWED",  "reviewer": null,            "reviewedDate": null }
+}

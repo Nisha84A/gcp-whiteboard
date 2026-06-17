@@ -1,0 +1,17 @@
+[
+  { "subjid": "SUBJ-001", "mhdecod": "Type 2 Diabetes",      "mhcat": "ENDOCRINE",        "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-001", "mhdecod": "Hypertension",          "mhcat": "CARDIOVASCULAR",   "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-002", "mhdecod": "Hypertension",          "mhcat": "CARDIOVASCULAR",   "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-002", "mhdecod": "Osteoarthritis",        "mhcat": "MUSCULOSKELETAL",  "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-003", "mhdecod": "Depression",            "mhcat": "PSYCHIATRIC",      "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-003", "mhdecod": "Migraine",              "mhcat": "NEUROLOGICAL",     "mhoccur": "Y", "mhstat": "RESOLVED" },
+  { "subjid": "SUBJ-004", "mhdecod": "Hyperlipidemia",        "mhcat": "ENDOCRINE",        "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-004", "mhdecod": "Coronary Artery Disease","mhcat": "CARDIOVASCULAR",  "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-005", "mhdecod": "Type 2 Diabetes",      "mhcat": "ENDOCRINE",        "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-005", "mhdecod": "GERD",                  "mhcat": "GASTROINTESTINAL", "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-006", "mhdecod": "Hypertension",          "mhcat": "CARDIOVASCULAR",   "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-007", "mhdecod": "Depression",            "mhcat": "PSYCHIATRIC",      "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-007", "mhdecod": "Insomnia",              "mhcat": "PSYCHIATRIC",      "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-008", "mhdecod": "Hyperlipidemia",        "mhcat": "ENDOCRINE",        "mhoccur": "Y", "mhstat": "ONGOING" },
+  { "subjid": "SUBJ-008", "mhdecod": "Type 2 Diabetes",      "mhcat": "ENDOCRINE",        "mhoccur": "Y", "mhstat": "ONGOING" }
+]
