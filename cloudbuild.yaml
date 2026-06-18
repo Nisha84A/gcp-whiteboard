@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t', 'gcr.io/demoagentspace-471819/clinboard',
+      '.'
+    ]
+images:
+  - 'gcr.io/demoagentspace-471819/clinboard'
