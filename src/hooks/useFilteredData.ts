@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { useDataStore } from '@/stores/dataStore';
-import { useFilterStore, PageFilters } from '@/stores/filterStore';
+import { useAppSelector } from '@/store';
+import { PageFilters } from '@/store/filterSlice';
 import { Subject, LabTest, AdverseEvent, Exposure, MedicalHistory, ConcomitantMed, Visit } from '@/types';
 
 function matchesSubject(subjId: string, filters: PageFilters, subjectMap: Map<string, Subject>): boolean {
@@ -24,8 +24,8 @@ function matchesStudyDay(day: number | undefined, filters: PageFilters): boolean
 }
 
 export function useFilteredData() {
-  const { subjects, labs, ae, ex, mh, cm, visits } = useDataStore();
-  const { filters } = useFilterStore();
+  const { subjects, labs, ae, ex, mh, cm, visits } = useAppSelector((state) => state.data);
+  const filters = useAppSelector((state) => state.filter.filters);
 
   const subjectMap = useMemo(
     () => new Map(subjects.map((s) => [s.id, s])),
@@ -117,7 +117,7 @@ export function useFilteredData() {
 }
 
 export function useFilterOptions() {
-  const { subjects, ae } = useDataStore();
+  const { subjects, ae } = useAppSelector((state) => state.data);
 
   return useMemo(() => ({
     subjectIds: subjects.map((s) => s.id),

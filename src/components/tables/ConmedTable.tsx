@@ -1,11 +1,16 @@
-import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { useMemo, useState } from 'react';
+import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
 import { Chip } from '@mui/material';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useSyncFilters } from '@/hooks/useSyncFilters';
+import { getSharedTableOptions } from './tableConfig';
+import ClickableSubjectCell from './ClickableSubjectCell';
 import { ConcomitantMed } from '@/types';
 
 export default function ConmedTable() {
   const { cm } = useFilteredData();
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
+  useSyncFilters(columnFilters);
 
   const columns = useMemo<MRT_ColumnDef<ConcomitantMed>[]>(
     () => [
@@ -13,13 +18,14 @@ export default function ConmedTable() {
         accessorKey: 'subjid',
         header: 'Subject',
         size: 100,
-        Cell: ({ cell }) => <span className="text-cyan-400 font-mono">{cell.getValue<string>()}</span>,
+        filterVariant: 'multi-select',
+        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
       },
       {
         accessorKey: 'cmtrt',
         header: 'Medication',
         size: 140,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         id: 'dose',
@@ -31,7 +37,7 @@ export default function ConmedTable() {
         accessorKey: 'cmroute',
         header: 'Route',
         size: 80,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'cmstdy',
@@ -44,13 +50,14 @@ export default function ConmedTable() {
         size: 100,
       },
       {
-        accessorKey: 'cmongo',
+        id: 'cmongo',
         header: 'Ongoing',
         size: 90,
-        filterVariant: 'select',
+        accessorFn: (row) => (row.cmongo ? 'Yes' : 'No'),
+        filterVariant: 'multi-select',
         Cell: ({ cell }) => {
-          const val = cell.getValue<boolean>();
-          return <Chip label={val ? 'Yes' : 'No'} size="small" color={val ? 'info' : 'default'} variant="outlined" sx={{ fontSize: '0.7rem' }} />;
+          const val = cell.getValue<string>();
+          return <Chip label={val} size="small" color={val === 'Yes' ? 'info' : 'default'} variant="outlined" sx={{ fontSize: '0.7rem' }} />;
         },
       },
     ],
@@ -60,12 +67,7 @@ export default function ConmedTable() {
   const table = useMaterialReactTable({
     columns,
     data: cm,
-    enableColumnFilters: true,
-    enableGlobalFilter: true,
-    enableDensityToggle: false,
-    enableFullScreenToggle: false,
-    initialState: { density: 'compact', showColumnFilters: true },
-    muiTablePaperProps: { elevation: 0, sx: { background: 'transparent' } },
+    ...getSharedTableOptions<ConcomitantMed>(columnFilters, setColumnFilters),
   });
 
   return <MaterialReactTable table={table} />;

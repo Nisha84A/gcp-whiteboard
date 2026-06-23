@@ -1,10 +1,15 @@
-import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { useMemo, useState } from 'react';
+import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useSyncFilters } from '@/hooks/useSyncFilters';
+import { getSharedTableOptions } from './tableConfig';
+import ClickableSubjectCell from './ClickableSubjectCell';
 import { LabTest } from '@/types';
 
 export default function LabTable() {
   const { labs } = useFilteredData();
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
+  useSyncFilters(columnFilters);
 
   const columns = useMemo<MRT_ColumnDef<LabTest>[]>(
     () => [
@@ -12,13 +17,14 @@ export default function LabTable() {
         accessorKey: 'subjid',
         header: 'Subject',
         size: 100,
-        Cell: ({ cell }) => <span className="text-cyan-400 font-mono">{cell.getValue<string>()}</span>,
+        filterVariant: 'multi-select',
+        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
       },
       {
         accessorKey: 'lbtest',
         header: 'Test',
         size: 110,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'lbstresn',
@@ -60,7 +66,7 @@ export default function LabTable() {
         id: 'flag',
         header: 'Flag',
         size: 80,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
         accessorFn: (row) => {
           if (row.lbstresn > row.lbnrhi) return 'HIGH';
           if (row.lbstresn < row.lbnrlo) return 'LOW';
@@ -83,12 +89,7 @@ export default function LabTable() {
   const table = useMaterialReactTable({
     columns,
     data: labs,
-    enableColumnFilters: true,
-    enableGlobalFilter: true,
-    enableDensityToggle: false,
-    enableFullScreenToggle: false,
-    initialState: { density: 'compact', showColumnFilters: true },
-    muiTablePaperProps: { elevation: 0, sx: { background: 'transparent' } },
+    ...getSharedTableOptions<LabTest>(columnFilters, setColumnFilters),
   });
 
   return <MaterialReactTable table={table} />;

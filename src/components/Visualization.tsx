@@ -8,6 +8,7 @@ import ConmedTable from './tables/ConmedTable';
 import AESummaryChart from './charts/AESummaryChart';
 import AETimelineChart from './charts/AETimelineChart';
 import LabTrendChart from './charts/LabTrendChart';
+import PatientProfile from './panels/PatientProfile';
 
 interface VisualizationProps {
   catalogItem: CatalogItem;
@@ -15,7 +16,7 @@ interface VisualizationProps {
 
 const componentMap: Record<CatalogItemType, React.ComponentType> = {
   'subject-listing': SubjectTable,
-  'patient-profile': SubjectTable,
+  'patient-profile': PatientProfile,
   'ae-timeline': AETimelineChart,
   'ae-summary': AESummaryChart,
   'conmed': ConmedTable,

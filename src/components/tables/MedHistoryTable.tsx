@@ -1,11 +1,16 @@
-import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { useMemo, useState } from 'react';
+import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
 import { Chip } from '@mui/material';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useSyncFilters } from '@/hooks/useSyncFilters';
+import { getSharedTableOptions } from './tableConfig';
+import ClickableSubjectCell from './ClickableSubjectCell';
 import { MedicalHistory } from '@/types';
 
 export default function MedHistoryTable() {
   const { mh } = useFilteredData();
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
+  useSyncFilters(columnFilters);
 
   const columns = useMemo<MRT_ColumnDef<MedicalHistory>[]>(
     () => [
@@ -13,7 +18,8 @@ export default function MedHistoryTable() {
         accessorKey: 'subjid',
         header: 'Subject',
         size: 100,
-        Cell: ({ cell }) => <span className="text-cyan-400 font-mono">{cell.getValue<string>()}</span>,
+        filterVariant: 'multi-select',
+        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
       },
       {
         accessorKey: 'mhdecod',
@@ -24,13 +30,13 @@ export default function MedHistoryTable() {
         accessorKey: 'mhcat',
         header: 'Category',
         size: 140,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'mhstat',
         header: 'Status',
         size: 110,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
         Cell: ({ cell }) => {
           const val = cell.getValue<string>();
           return (
@@ -51,12 +57,7 @@ export default function MedHistoryTable() {
   const table = useMaterialReactTable({
     columns,
     data: mh,
-    enableColumnFilters: true,
-    enableGlobalFilter: true,
-    enableDensityToggle: false,
-    enableFullScreenToggle: false,
-    initialState: { density: 'compact', showColumnFilters: true },
-    muiTablePaperProps: { elevation: 0, sx: { background: 'transparent' } },
+    ...getSharedTableOptions<MedicalHistory>(columnFilters, setColumnFilters),
   });
 
   return <MaterialReactTable table={table} />;

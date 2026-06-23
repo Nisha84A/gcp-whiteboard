@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStore } from '@/stores/authStore';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { checkAuthThunk } from '@/store/authSlice';
 
 export default function ProtectedRoute() {
-  const { isAuthenticated, isLoading, checkAuth } = useAuthStore();
+  const dispatch = useAppDispatch();
+  const { isAuthenticated, isLoading, token } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+    if (!isAuthenticated && token) {
+      dispatch(checkAuthThunk());
+    }
+  }, []);
 
   if (isLoading) {
     return (
@@ -17,7 +21,7 @@ export default function ProtectedRoute() {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !token) {
     return <Navigate to="/login" replace />;
   }
 

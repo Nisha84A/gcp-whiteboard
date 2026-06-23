@@ -1,7 +1,10 @@
-import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { useMemo, useState } from 'react';
+import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
 import { Chip } from '@mui/material';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useSyncFilters } from '@/hooks/useSyncFilters';
+import { getSharedTableOptions } from './tableConfig';
+import ClickableSubjectCell from './ClickableSubjectCell';
 import { AdverseEvent } from '@/types';
 
 const severityColor: Record<string, 'error' | 'warning' | 'success'> = {
@@ -12,6 +15,8 @@ const severityColor: Record<string, 'error' | 'warning' | 'success'> = {
 
 export default function AETable() {
   const { ae } = useFilteredData();
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
+  useSyncFilters(columnFilters);
 
   const columns = useMemo<MRT_ColumnDef<AdverseEvent>[]>(
     () => [
@@ -19,19 +24,20 @@ export default function AETable() {
         accessorKey: 'subjid',
         header: 'Subject',
         size: 100,
-        Cell: ({ cell }) => <span className="text-cyan-400 font-mono">{cell.getValue<string>()}</span>,
+        filterVariant: 'multi-select',
+        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
       },
       {
         accessorKey: 'aeterm',
         header: 'Term',
         size: 130,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'aesev',
         header: 'Severity',
         size: 110,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
         Cell: ({ cell }) => {
           const val = cell.getValue<string>();
           return <Chip label={val} size="small" color={severityColor[val] || 'default'} sx={{ fontSize: '0.7rem' }} />;
@@ -41,7 +47,7 @@ export default function AETable() {
         accessorKey: 'aerel',
         header: 'Relatedness',
         size: 150,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'aestdy',
@@ -69,12 +75,7 @@ export default function AETable() {
   const table = useMaterialReactTable({
     columns,
     data: ae,
-    enableColumnFilters: true,
-    enableGlobalFilter: true,
-    enableDensityToggle: false,
-    enableFullScreenToggle: false,
-    initialState: { density: 'compact', showColumnFilters: true },
-    muiTablePaperProps: { elevation: 0, sx: { background: 'transparent' } },
+    ...getSharedTableOptions<AdverseEvent>(columnFilters, setColumnFilters),
   });
 
   return <MaterialReactTable table={table} />;

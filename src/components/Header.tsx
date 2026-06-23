@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Activity, Sun, Moon, LogOut } from 'lucide-react';
-import { useAuthStore } from '@/stores/authStore';
-import { useThemeStore } from '@/stores/themeStore';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { logout } from '@/store/authSlice';
+import { toggleTheme } from '@/store/themeSlice';
 
 export default function Header() {
-  const { user, logout } = useAuthStore();
-  const { mode, toggleTheme } = useThemeStore();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+  const mode = useAppSelector((state) => state.theme.mode);
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function Header() {
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <Activity className="w-5 h-5 text-cyan-400" />
-          <span className="text-lg font-bold text-cyan-400">ClinBoard</span>
+          <span className="text-lg font-bold text-cyan-400">TrialClarity</span>
         </div>
         <div className="hidden sm:flex items-center gap-2 text-sm">
           <span className="px-2 py-0.5 bg-navy-800 border border-slate-600 rounded text-slate-300 font-mono text-xs">
@@ -46,7 +48,7 @@ export default function Header() {
         </span>
 
         <button
-          onClick={toggleTheme}
+          onClick={() => dispatch(toggleTheme())}
           className="p-1.5 rounded hover:bg-navy-800 text-slate-400 hover:text-white transition-colors"
           title={`Switch to ${mode === 'dark' ? 'light' : 'dark'} mode`}
         >
@@ -64,7 +66,7 @@ export default function Header() {
         </div>
 
         <button
-          onClick={logout}
+          onClick={() => dispatch(logout())}
           className="p-1.5 rounded hover:bg-red-900/50 text-slate-400 hover:text-red-400 transition-colors"
           title="Logout"
         >

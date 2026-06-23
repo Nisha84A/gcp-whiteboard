@@ -5,7 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useThemeStore } from '@/stores/themeStore';
+import { useAppSelector } from '@/store';
 import { darkTheme, lightTheme } from '@/theme';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
@@ -13,7 +13,7 @@ import Dashboard from '@/pages/Dashboard';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
 function App() {
-  const { mode } = useThemeStore();
+  const mode = useAppSelector((state) => state.theme.mode);
   const theme = useMemo(() => (mode === 'dark' ? darkTheme : lightTheme), [mode]);
 
   useEffect(() => {

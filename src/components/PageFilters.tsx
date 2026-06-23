@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Filter, X, ChevronDown, Check } from 'lucide-react';
-import { useFilterStore } from '@/stores/filterStore';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { setFilter, clearAll as clearAllFilters } from '@/store/filterSlice';
 import { useFilterOptions } from '@/hooks/useFilteredData';
 
 interface MultiSelectProps {
@@ -120,9 +121,10 @@ function RangeFilter({ label, range, onChange }: RangeFilterProps) {
 }
 
 export default function PageFilters() {
-  const { filters, setFilter, clearAll, activeFilterCount } = useFilterStore();
+  const dispatch = useAppDispatch();
+  const filters = useAppSelector((state) => state.filter.filters);
   const options = useFilterOptions();
-  const count = activeFilterCount();
+  const count = [filters.subjectIds, filters.arms, filters.sites, filters.sex, filters.aeSeverity, filters.aeRelatedness].filter(a => a.length > 0).length + (filters.studyDayRange[0] !== null || filters.studyDayRange[1] !== null ? 1 : 0);
 
   return (
     <div className="bg-navy-800 border-b border-slate-700 px-4 py-2 shrink-0">
@@ -141,53 +143,53 @@ export default function PageFilters() {
           label="Subject ID"
           options={options.subjectIds}
           selected={filters.subjectIds}
-          onChange={(val) => setFilter('subjectIds', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'subjectIds', value: val }))}
         />
 
         <MultiSelect
           label="Treatment Arm"
           options={options.arms}
           selected={filters.arms}
-          onChange={(val) => setFilter('arms', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'arms', value: val }))}
         />
 
         <MultiSelect
           label="Site"
           options={options.sites}
           selected={filters.sites}
-          onChange={(val) => setFilter('sites', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'sites', value: val }))}
         />
 
         <MultiSelect
           label="Sex"
           options={options.sex}
           selected={filters.sex}
-          onChange={(val) => setFilter('sex', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'sex', value: val }))}
         />
 
         <MultiSelect
           label="AE Severity"
           options={options.aeSeverity}
           selected={filters.aeSeverity}
-          onChange={(val) => setFilter('aeSeverity', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'aeSeverity', value: val }))}
         />
 
         <MultiSelect
           label="Relatedness"
           options={options.aeRelatedness}
           selected={filters.aeRelatedness}
-          onChange={(val) => setFilter('aeRelatedness', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'aeRelatedness', value: val }))}
         />
 
         <RangeFilter
           label="Study Day"
           range={filters.studyDayRange}
-          onChange={(val) => setFilter('studyDayRange', val)}
+          onChange={(val) => dispatch(setFilter({ key: 'studyDayRange', value: val }))}
         />
 
         {count > 0 && (
           <button
-            onClick={clearAll}
+            onClick={() => dispatch(clearAllFilters())}
             className="flex items-center gap-1 px-2 py-1 text-xs text-red-400 hover:text-red-300 border border-red-800 rounded hover:bg-red-900/30 transition-colors"
           >
             <X className="w-3 h-3" />

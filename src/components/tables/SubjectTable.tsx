@@ -1,11 +1,16 @@
-import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { useMemo, useState } from 'react';
+import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
 import { Chip } from '@mui/material';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useSyncFilters } from '@/hooks/useSyncFilters';
+import { getSharedTableOptions } from './tableConfig';
+import ClickableSubjectCell from './ClickableSubjectCell';
 import { Subject } from '@/types';
 
 export default function SubjectTable() {
   const { subjects } = useFilteredData();
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
+  useSyncFilters(columnFilters);
 
   const columns = useMemo<MRT_ColumnDef<Subject>[]>(
     () => [
@@ -13,13 +18,14 @@ export default function SubjectTable() {
         accessorKey: 'id',
         header: 'Subject',
         size: 110,
-        Cell: ({ cell }) => <span className="text-cyan-400 font-mono font-semibold">{cell.getValue<string>()}</span>,
+        filterVariant: 'multi-select',
+        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
       },
       {
         accessorKey: 'arm',
         header: 'Arm',
         size: 140,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'age',
@@ -31,19 +37,19 @@ export default function SubjectTable() {
         accessorKey: 'sex',
         header: 'Sex',
         size: 70,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'site',
         header: 'Site',
         size: 100,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
       },
       {
         accessorKey: 'status',
         header: 'Status',
         size: 130,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
         Cell: ({ cell }) => {
           const val = cell.getValue<string>();
           return (
@@ -61,7 +67,7 @@ export default function SubjectTable() {
         accessorKey: 'vital',
         header: 'Vital',
         size: 90,
-        filterVariant: 'select',
+        filterVariant: 'multi-select',
         Cell: ({ cell }) => {
           const val = cell.getValue<string>();
           return (
@@ -78,13 +84,7 @@ export default function SubjectTable() {
   const table = useMaterialReactTable({
     columns,
     data: subjects,
-    enableColumnFilters: true,
-    enableGlobalFilter: true,
-    enableDensityToggle: false,
-    enableFullScreenToggle: false,
-    initialState: { density: 'compact', showColumnFilters: true },
-    muiTablePaperProps: { elevation: 0, sx: { background: 'transparent' } },
-    muiTableContainerProps: { sx: { maxHeight: '100%' } },
+    ...getSharedTableOptions<Subject>(columnFilters, setColumnFilters),
   });
 
   return <MaterialReactTable table={table} />;
