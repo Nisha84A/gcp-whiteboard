@@ -1,0 +1,10 @@
+[
+  { "type": "CRITICAL", "color": "red", "icon": "alert", "message": "3 severe AEs flagged in **ABC-2024-001** — immediate medical review required in Hematology & Oncology domains", "time": "2 min ago", "source": "Anomaly Detection Agent" },
+  { "type": "NEW ALERT", "color": "amber", "icon": "warning", "message": "Vital signs anomaly detected for Subject **ABC-1042** in **ABC-2024-001** — BP trending high over 3 consecutive visits", "time": "Just now", "source": "Real-Time Monitor" },
+  { "type": "DEADLINE", "color": "red", "icon": "clock", "message": "Database lock in **5 days** — 142 open queries remain in **XYZ-2023-005**. Resolution rate: 43%", "time": "18 min ago", "source": "Query Management" },
+  { "type": "AI AGENT", "color": "green", "icon": "bot", "message": "Overnight discrepancy sweep complete — **47 new queries** generated across 3 studies. 12 escalated for medical review", "time": "1 hr ago", "source": "Clinical Ops Agent" },
+  { "type": "LAB ALERT", "color": "amber", "icon": "flask", "message": "Lab values outside reference range for **8 subjects** in **ABC-2024-001** — Hematology domain flagged", "time": "2 hr ago", "source": "Lab Anomaly Monitor" },
+  { "type": "VALIDATED", "color": "green", "icon": "check", "message": "Study setup validation passed for **DEF-2025-003** — 12 edit checks deployed, 0 critical failures", "time": "3 hr ago", "source": "Setup Validation Agent" },
+  { "type": "EDC SYNC", "color": "blue", "icon": "sync", "message": "23 queries pushed bidirectionally to Medidata Rave for **XYZ-2023-005** — sync successful", "time": "4 hr ago", "source": "IDQM Sync Engine" },
+  { "type": "REPORT", "color": "purple", "icon": "file", "message": "Readiness assessment generated for **DEF-2025-003** — 94% data completeness. On track for lock", "time": "6 hr ago", "source": "Readiness Agent" }
+]

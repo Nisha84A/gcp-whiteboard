@@ -80,7 +80,10 @@ export type CatalogItemType =
   | 'lab-trend'
   | 'lab-listing'
   | 'vital-signs'
-  | 'exposure';
+  | 'exposure'
+  | 'visit-grid'
+  | 'dm-concierge'
+  | 'site-enrollment';
 
 export interface CatalogItem {
   id: string;

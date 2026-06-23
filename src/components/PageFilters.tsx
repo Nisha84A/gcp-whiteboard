@@ -124,7 +124,7 @@ export default function PageFilters() {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filter.filters);
   const options = useFilterOptions();
-  const count = [filters.subjectIds, filters.arms, filters.sites, filters.sex, filters.aeSeverity, filters.aeRelatedness].filter(a => a.length > 0).length + (filters.studyDayRange[0] !== null || filters.studyDayRange[1] !== null ? 1 : 0);
+  const count = [filters.subjectIds, filters.arms, filters.sites, filters.sex, filters.vitalStatus, filters.studyStatus, filters.aeSeverity, filters.aeRelatedness].filter(a => a.length > 0).length + (filters.studyDayRange[0] !== null || filters.studyDayRange[1] !== null ? 1 : 0);
 
   return (
     <div className="bg-navy-800 border-b border-slate-700 px-4 py-2 shrink-0">
@@ -165,6 +165,20 @@ export default function PageFilters() {
           options={options.sex}
           selected={filters.sex}
           onChange={(val) => dispatch(setFilter({ key: 'sex', value: val }))}
+        />
+
+        <MultiSelect
+          label="Vital Status"
+          options={options.vitalStatus}
+          selected={filters.vitalStatus}
+          onChange={(val) => dispatch(setFilter({ key: 'vitalStatus', value: val }))}
+        />
+
+        <MultiSelect
+          label="Study Status"
+          options={options.studyStatus}
+          selected={filters.studyStatus}
+          onChange={(val) => dispatch(setFilter({ key: 'studyStatus', value: val }))}
         />
 
         <MultiSelect

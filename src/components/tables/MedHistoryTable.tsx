@@ -1,64 +1,53 @@
-import { useMemo, useState } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
-import { Chip } from '@mui/material';
 import { useFilteredData } from '@/hooks/useFilteredData';
-import { useSyncFilters } from '@/hooks/useSyncFilters';
-import { getSharedTableOptions } from './tableConfig';
 import ClickableSubjectCell from './ClickableSubjectCell';
-import { MedicalHistory } from '@/types';
+
+const categoryColors: Record<string, string> = {
+  ENDOCRINE: 'bg-blue-400',
+  CARDIOVASCULAR: 'bg-red-400',
+  MUSCULOSKELETAL: 'bg-green-400',
+  PSYCHIATRIC: 'bg-purple-400',
+  NEUROLOGICAL: 'bg-amber-400',
+  GASTROINTESTINAL: 'bg-green-400',
+};
 
 export default function MedHistoryTable() {
   const { mh } = useFilteredData();
-  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
-  useSyncFilters(columnFilters);
 
-  const columns = useMemo<MRT_ColumnDef<MedicalHistory>[]>(
-    () => [
-      {
-        accessorKey: 'subjid',
-        header: 'Subject',
-        size: 100,
-        filterVariant: 'multi-select',
-        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
-      },
-      {
-        accessorKey: 'mhdecod',
-        header: 'Condition',
-        size: 180,
-      },
-      {
-        accessorKey: 'mhcat',
-        header: 'Category',
-        size: 140,
-        filterVariant: 'multi-select',
-      },
-      {
-        accessorKey: 'mhstat',
-        header: 'Status',
-        size: 110,
-        filterVariant: 'multi-select',
-        Cell: ({ cell }) => {
-          const val = cell.getValue<string>();
-          return (
-            <Chip
-              label={val}
-              size="small"
-              color={val === 'ONGOING' ? 'warning' : 'success'}
-              variant="outlined"
-              sx={{ fontSize: '0.7rem' }}
-            />
-          );
-        },
-      },
-    ],
-    []
+  return (
+    <div className="w-full h-full overflow-auto">
+      <table className="w-full text-xs border-collapse">
+        <thead>
+          <tr className="border-b border-slate-700">
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Subject</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Condition</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Category</th>
+            <th className="px-3 py-2 text-center text-[10px] font-bold text-slate-400 uppercase tracking-wider">Onset</th>
+            <th className="px-3 py-2 text-center text-[10px] font-bold text-slate-400 uppercase tracking-wider">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mh.map((item, idx) => (
+            <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/30">
+              <td className="px-3 py-2">
+                <ClickableSubjectCell subjectId={item.subjid} />
+              </td>
+              <td className="px-3 py-2 text-slate-200">
+                <span className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${categoryColors[item.mhcat] || 'bg-slate-400'}`}></span>
+                  {item.mhdecod}
+                </span>
+              </td>
+              <td className="px-3 py-2 text-[10px] text-slate-500 uppercase">{item.mhcat}</td>
+              <td className="px-3 py-2 text-center text-slate-400">PRIOR</td>
+              <td className="px-3 py-2 text-center">
+                <span className={`text-[10px] font-bold ${item.mhstat === 'ONGOING' ? 'text-green-400' : 'text-slate-400'}`}>
+                  {item.mhstat}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
-
-  const table = useMaterialReactTable({
-    columns,
-    data: mh,
-    ...getSharedTableOptions<MedicalHistory>(columnFilters, setColumnFilters),
-  });
-
-  return <MaterialReactTable table={table} />;
 }

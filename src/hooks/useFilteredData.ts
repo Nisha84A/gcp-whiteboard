@@ -11,6 +11,8 @@ function matchesSubject(subjId: string, filters: PageFilters, subjectMap: Map<st
   if (filters.arms.length && !filters.arms.includes(subj.arm)) return false;
   if (filters.sites.length && !filters.sites.includes(subj.site)) return false;
   if (filters.sex.length && !filters.sex.includes(subj.sex)) return false;
+  if (filters.vitalStatus.length && !filters.vitalStatus.includes(subj.vital)) return false;
+  if (filters.studyStatus.length && !filters.studyStatus.includes(subj.status)) return false;
 
   return true;
 }
@@ -38,6 +40,8 @@ export function useFilteredData() {
       filters.arms.length > 0 ||
       filters.sites.length > 0 ||
       filters.sex.length > 0 ||
+      filters.vitalStatus.length > 0 ||
+      filters.studyStatus.length > 0 ||
       filters.aeSeverity.length > 0 ||
       filters.aeRelatedness.length > 0 ||
       filters.studyDayRange[0] !== null ||
@@ -52,6 +56,8 @@ export function useFilteredData() {
       if (filters.arms.length && !filters.arms.includes(s.arm)) return false;
       if (filters.sites.length && !filters.sites.includes(s.site)) return false;
       if (filters.sex.length && !filters.sex.includes(s.sex)) return false;
+      if (filters.vitalStatus.length && !filters.vitalStatus.includes(s.vital)) return false;
+      if (filters.studyStatus.length && !filters.studyStatus.includes(s.status)) return false;
       return true;
     });
   }, [subjects, filters, hasActiveFilters]);
@@ -124,6 +130,8 @@ export function useFilterOptions() {
     arms: Array.from(new Set(subjects.map((s) => s.arm))),
     sites: Array.from(new Set(subjects.map((s) => s.site))),
     sex: Array.from(new Set(subjects.map((s) => s.sex))),
+    vitalStatus: Array.from(new Set(subjects.map((s) => s.vital))),
+    studyStatus: Array.from(new Set(subjects.map((s) => s.status))),
     aeSeverity: Array.from(new Set(ae.map((a) => a.aesev))),
     aeRelatedness: Array.from(new Set(ae.map((a) => a.aerel))),
   }), [subjects, ae]);

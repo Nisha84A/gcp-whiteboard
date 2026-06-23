@@ -1,87 +1,94 @@
-import { useMemo, useState } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef, type MRT_ColumnFiltersState } from 'material-react-table';
-import { Chip } from '@mui/material';
 import { useFilteredData } from '@/hooks/useFilteredData';
-import { useSyncFilters } from '@/hooks/useSyncFilters';
-import { getSharedTableOptions } from './tableConfig';
 import ClickableSubjectCell from './ClickableSubjectCell';
-import { Exposure } from '@/types';
+
+const treatmentColors: Record<string, string> = {
+  'Drug ABC': 'bg-teal-500',
+  'Drug XYZ': 'bg-blue-400',
+  'Placebo': 'bg-slate-500',
+};
 
 export default function ExposureTable() {
   const { ex } = useFilteredData();
-  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
-  useSyncFilters(columnFilters);
+  const maxDay = Math.max(...ex.map((e) => e.exendy), 90);
 
-  const columns = useMemo<MRT_ColumnDef<Exposure>[]>(
-    () => [
-      {
-        accessorKey: 'subjid',
-        header: 'Subject',
-        size: 100,
-        filterVariant: 'multi-select',
-        Cell: ({ cell }) => <ClickableSubjectCell subjectId={cell.getValue<string>()} />,
-      },
-      {
-        accessorKey: 'extrt',
-        header: 'Treatment',
-        size: 130,
-        filterVariant: 'multi-select',
-      },
-      {
-        id: 'dose',
-        header: 'Dose',
-        size: 100,
-        accessorFn: (row) => `${row.exdose} ${row.exdosu}`,
-      },
-      {
-        accessorKey: 'exroute',
-        header: 'Route',
-        size: 80,
-        filterVariant: 'multi-select',
-      },
-      {
-        accessorKey: 'exdosfrq',
-        header: 'Frequency',
-        size: 80,
-        filterVariant: 'multi-select',
-      },
-      {
-        accessorKey: 'exstdy',
-        header: 'Start Day',
-        size: 90,
-      },
-      {
-        accessorKey: 'exendy',
-        header: 'End Day',
-        size: 90,
-      },
-      {
-        id: 'duration',
-        header: 'Duration',
-        size: 90,
-        accessorFn: (row) => row.exendy - row.exstdy,
-        Cell: ({ cell }) => <span>{cell.getValue<number>()} days</span>,
-      },
-      {
-        id: 'excomp',
-        header: 'Completed',
-        size: 100,
-        accessorFn: (row) => (row.excomp ? 'Yes' : 'No'),
-        filterVariant: 'multi-select',
-        Cell: ({ cell }) => {
-          const val = cell.getValue<string>();
-          return <Chip label={val} size="small" color={val === 'Yes' ? 'success' : 'error'} variant="outlined" sx={{ fontSize: '0.7rem' }} />;
-        },
-      },
-    ],
-    []
+  return (
+    <div className="w-full h-full overflow-auto">
+      {/* Gantt chart */}
+      <div className="p-4 border-b border-slate-700">
+        <div className="space-y-2">
+          {ex.map((e, idx) => (
+            <div key={idx} className="flex items-center gap-3">
+              <span className="text-[10px] text-slate-400 font-mono w-16 shrink-0">{e.subjid}</span>
+              <div className="flex-1 h-5 bg-slate-800/50 rounded relative">
+                <div
+                  className={`absolute h-full rounded ${treatmentColors[e.extrt] || 'bg-slate-500'}`}
+                  style={{
+                    left: `${(e.exstdy / maxDay) * 100}%`,
+                    width: `${((e.exendy - e.exstdy) / maxDay) * 100}%`,
+                  }}
+                />
+                {!e.excomp && (
+                  <div
+                    className="absolute h-full w-1 bg-red-500 rounded"
+                    style={{ left: `${(e.exendy / maxDay) * 100}%` }}
+                  />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-between mt-3 text-[9px] text-slate-500">
+          <span>D0</span>
+          <span>D30</span>
+          <span>D60</span>
+          <span>D90</span>
+        </div>
+        <div className="flex items-center gap-4 mt-2">
+          {Object.entries(treatmentColors).map(([name, color]) => (
+            <span key={name} className="flex items-center gap-1.5 text-[10px] text-slate-400">
+              <span className={`w-3 h-2 rounded ${color}`}></span> {name}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Table */}
+      <table className="w-full text-xs border-collapse">
+        <thead>
+          <tr className="border-b border-slate-700">
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Subject</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Treatment</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dose</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Route</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Freq</th>
+            <th className="px-3 py-2 text-left text-[10px] font-bold text-slate-400 uppercase tracking-wider">Period</th>
+            <th className="px-3 py-2 text-center text-[10px] font-bold text-slate-400 uppercase tracking-wider">Completion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ex.map((e, idx) => (
+            <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/30">
+              <td className="px-3 py-2">
+                <ClickableSubjectCell subjectId={e.subjid} />
+              </td>
+              <td className="px-3 py-2">
+                <span className={`font-semibold ${e.extrt === 'Drug ABC' ? 'text-teal-400' : e.extrt === 'Drug XYZ' ? 'text-blue-400' : 'text-slate-400'}`}>
+                  {e.extrt}
+                </span>
+              </td>
+              <td className="px-3 py-2 text-slate-300">{e.extrt === 'Placebo' ? '—' : `${e.exdose} ${e.exdosu}`}</td>
+              <td className="px-3 py-2 text-slate-300">{e.exroute}</td>
+              <td className="px-3 py-2 text-slate-300">{e.exdosfrq}</td>
+              <td className="px-3 py-2 text-slate-400">D{e.exstdy}–D{e.exendy}</td>
+              <td className="px-3 py-2 text-center">
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${e.excomp ? 'bg-cyan-900/40 text-cyan-400' : 'bg-red-900/40 text-red-400'}`}>
+                  {e.excomp ? 'COMPLETE' : 'EARLY STOP'}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
-
-  const table = useMaterialReactTable({
-    columns,
-    data: ex,
-    ...getSharedTableOptions<Exposure>(columnFilters, setColumnFilters),
-  });
-
-  return <MaterialReactTable table={table} />;
 }

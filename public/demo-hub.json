@@ -1,0 +1,56 @@
+{
+  "header": {
+    "subtitle": "Clinical Data Review Solution — Demo Hub"
+  },
+  "hero": {
+    "tag": "PERFICIENT · CLINICAL DATA REVIEW SOLUTION",
+    "title": "AI-Powered Clinical Data Review Platform",
+    "titleHighlight": "Clinical Data",
+    "description": "Explore three interactive demos of Perficient's Clinical Data Repository & Review Solution — from autonomous AI agents and natural-language concierge to self-service visualization whiteboards. All modules work together on a unified, GxP-compliant data foundation."
+  },
+  "statsHeader": "ACTIVE STUDIES — PLATFORM OVERVIEW",
+  "statsRefresh": "Last refreshed: 2 min ago",
+  "stats": [
+    { "value": "3", "label": "ACTIVE STUDIES", "change": "▲ 1 from last month", "color": "green" },
+    { "value": "3", "label": "CRITICAL ALERTS", "change": "▲ New today", "color": "red" },
+    { "value": "142", "label": "OPEN QUERIES", "change": "▼ 23 resolved today", "color": "red" },
+    { "value": "47", "label": "AI QUERIES GENERATED", "change": "Overnight sweep", "color": "green" }
+  ],
+  "modulesHeader": "INTERACTIVE DEMOS — CLICK TO LAUNCH",
+  "modules": [
+    {
+      "id": "agents",
+      "module": "MODULE 9 · CLINICAL OPS AGENTS",
+      "title": "AI Clinical Operations Agents",
+      "description": "Autonomous agents execute complex multi-step clinical workflows — discrepancy triage, study setup validation, database readiness assessments — with real-time audit trails and reviewer queues. No manual intervention required.",
+      "tags": ["AGENTIC AI", "DISCREPANCY MGMT", "GXP AUDIT TRAIL", "AUTOMATION"],
+      "route": "/agents",
+      "color": "green",
+      "icon": "bot",
+      "buttonLabel": "Launch Agents Demo"
+    },
+    {
+      "id": "concierge",
+      "module": "MODULE 8 · AI CONCIERGE",
+      "title": "Data Management Concierge",
+      "description": "Natural-language AI interface for data managers and medical reviewers — query study data conversationally, surface safety signals, generate patient narratives, and trigger discrepancy workflows without SQL or programmer support.",
+      "tags": ["NL QUERY", "SAFETY SIGNALS", "GEN AI", "SELF-SERVICE"],
+      "route": "/concierge",
+      "color": "red",
+      "icon": "message",
+      "buttonLabel": "Launch Concierge Demo"
+    },
+    {
+      "id": "whiteboard",
+      "module": "MODULE 6 · VISUALIZATION WHITEBOARD",
+      "title": "Clinical Data Whiteboard",
+      "description": "Self-service visualization canvas with drag-and-drop widgets, subject-level drill-down, RELREC cross-domain linking, and live data refresh — no programmer tickets, no waiting. Build study views in minutes.",
+      "tags": ["SELF-SERVICE", "RELREC LINKING", "DRAG-AND-DROP", "VISUALIZATION"],
+      "route": "/whiteboard",
+      "color": "blue",
+      "icon": "layout",
+      "buttonLabel": "Launch Whiteboard Demo"
+    }
+  ],
+  "footer": "About these demos: All demos share a common synthetic clinical dataset (Study ABC-2024-001, Phase 3). Data is illustrative only — generated for demonstration purposes. Each demo represents a distinct module of the TrialClarity Clinical Data Review Solution. For engagement inquiries, contact Prabha.Ranganathan@perficient.com."
+}

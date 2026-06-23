@@ -5,6 +5,8 @@ export interface PageFilters {
   arms: string[];
   sites: string[];
   sex: string[];
+  vitalStatus: string[];
+  studyStatus: string[];
   aeSeverity: string[];
   aeRelatedness: string[];
   studyDayRange: [number | null, number | null];
@@ -15,6 +17,8 @@ const initialFilters: PageFilters = {
   arms: [],
   sites: [],
   sex: [],
+  vitalStatus: [],
+  studyStatus: [],
   aeSeverity: [],
   aeRelatedness: [],
   studyDayRange: [null, null],

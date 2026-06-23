@@ -9,7 +9,10 @@ import { useAppSelector } from '@/store';
 import { darkTheme, lightTheme } from '@/theme';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
+import DemoHub from '@/pages/DemoHub';
 import Dashboard from '@/pages/Dashboard';
+import AgentsDemo from '@/pages/AgentsDemo';
+import ConciergeDemo from '@/pages/ConciergeDemo';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
 function App() {
@@ -30,7 +33,10 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<DemoHub />} />
+                <Route path="/whiteboard" element={<Dashboard />} />
+                <Route path="/agents" element={<AgentsDemo />} />
+                <Route path="/concierge" element={<ConciergeDemo />} />
               </Route>
             </Routes>
           </BrowserRouter>

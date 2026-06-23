@@ -5,6 +5,7 @@ import AETable from './tables/AETable';
 import ExposureTable from './tables/ExposureTable';
 import MedHistoryTable from './tables/MedHistoryTable';
 import ConmedTable from './tables/ConmedTable';
+import VisitGrid from './tables/VisitGrid';
 import AESummaryChart from './charts/AESummaryChart';
 import AETimelineChart from './charts/AETimelineChart';
 import LabTrendChart from './charts/LabTrendChart';
@@ -14,7 +15,7 @@ interface VisualizationProps {
   catalogItem: CatalogItem;
 }
 
-const componentMap: Record<CatalogItemType, React.ComponentType> = {
+const componentMap: Partial<Record<CatalogItemType, React.ComponentType>> = {
   'subject-listing': SubjectTable,
   'patient-profile': PatientProfile,
   'ae-timeline': AETimelineChart,
@@ -25,6 +26,7 @@ const componentMap: Record<CatalogItemType, React.ComponentType> = {
   'lab-listing': LabTable,
   'vital-signs': LabTrendChart,
   'exposure': ExposureTable,
+  'visit-grid': VisitGrid,
 };
 
 export default function Visualization({ catalogItem }: VisualizationProps) {

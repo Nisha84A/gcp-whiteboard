@@ -1,46 +1,37 @@
 import { useMemo } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useFilteredData } from '@/hooks/useFilteredData';
 
 export default function AESummaryChart() {
   const { ae } = useFilteredData();
 
   const data = useMemo(() => {
-    const termCounts: Record<string, { term: string; MILD: number; MODERATE: number; SEVERE: number }> = {};
-    ae.forEach((event) => {
-      if (!termCounts[event.aeterm]) {
-        termCounts[event.aeterm] = { term: event.aeterm, MILD: 0, MODERATE: 0, SEVERE: 0 };
-      }
-      const sev = event.aesev as 'MILD' | 'MODERATE' | 'SEVERE';
-      if (termCounts[event.aeterm][sev] !== undefined) {
-        termCounts[event.aeterm][sev]++;
-      }
-    });
-    return Object.values(termCounts).sort((a, b) => (b.MILD + b.MODERATE + b.SEVERE) - (a.MILD + a.MODERATE + a.SEVERE));
+    const counts: Record<string, number> = {};
+    ae.forEach((e) => { counts[e.aeterm] = (counts[e.aeterm] || 0) + 1; });
+    return Object.entries(counts)
+      .map(([term, count]) => ({ term, count }))
+      .sort((a, b) => b.count - a.count);
   }, [ae]);
 
+  const maxCount = Math.max(...data.map((d) => d.count), 1);
+  const totalSubjects = new Set(ae.map((e) => e.subjid)).size;
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={data} layout="vertical" margin={{ top: 30, right: 20, left: 10, bottom: 25 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-        <XAxis
-          type="number"
-          stroke="#94a3b8"
-          fontSize={10}
-          tickMargin={4}
-          allowDecimals={false}
-          label={{ value: 'Count', position: 'insideBottom', offset: -10, fill: '#94a3b8', fontSize: 10 }}
-        />
-        <YAxis dataKey="term" type="category" stroke="#94a3b8" fontSize={10} width={80} tickMargin={4} />
-        <Tooltip
-          contentStyle={{ background: '#1a2744', border: '1px solid #334155', borderRadius: 6 }}
-          labelStyle={{ color: '#f1f5f9' }}
-        />
-        <Legend verticalAlign="top" align="center" wrapperStyle={{ fontSize: 10, paddingBottom: 8 }} />
-        <Bar dataKey="MILD" stackId="a" fill="#10b981" />
-        <Bar dataKey="MODERATE" stackId="a" fill="#f59e0b" />
-        <Bar dataKey="SEVERE" stackId="a" fill="#ef4444" radius={[0, 4, 4, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="w-full h-full flex flex-col p-3">
+      <p className="text-[11px] text-slate-400 text-center mb-3">All Subjects (n={totalSubjects})</p>
+      <div className="flex-1 flex flex-col justify-center gap-2">
+        {data.map((d) => (
+          <div key={d.term} className="flex items-center gap-2">
+            <span className="text-[11px] text-slate-300 w-20 text-right shrink-0">{d.term}</span>
+            <div className="flex-1 h-5 bg-slate-800 rounded overflow-hidden">
+              <div
+                className="h-full bg-teal-600/80 rounded"
+                style={{ width: `${(d.count / maxCount) * 100}%` }}
+              />
+            </div>
+            <span className="text-[11px] text-teal-400 font-bold w-5">{d.count}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
