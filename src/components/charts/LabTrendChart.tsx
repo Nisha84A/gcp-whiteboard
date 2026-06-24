@@ -1,10 +1,13 @@
 import { useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useAppDispatch, useAppSelector, store } from '@/store';
+import { setFilter } from '@/store/filterSlice';
 
 const SUBJECT_COLORS = ['#22d3ee', '#14b8a6', '#a78bfa', '#fb923c', '#f472b6', '#34d399', '#fbbf24', '#60a5fa'];
 
 export default function LabTrendChart() {
+  const dispatch = useAppDispatch();
   const { labs } = useFilteredData();
 
   const { chartData, subjects, refHi, refLo } = useMemo(() => {
@@ -49,7 +52,22 @@ export default function LabTrendChart() {
           labelStyle={{ color: '#f1f5f9' }}
           labelFormatter={(val) => `Day ${val}`}
         />
-        <Legend verticalAlign="top" align="center" wrapperStyle={{ fontSize: 10, paddingBottom: 8 }} />
+        <Legend
+          verticalAlign="top"
+          align="center"
+          wrapperStyle={{ fontSize: 10, paddingBottom: 8, cursor: 'pointer' }}
+          onClick={(e: any) => {
+            if (e?.dataKey) {
+              const id = e.dataKey;
+              const current = store.getState().filter.filters.subjectIds;
+              if (current.includes(id)) {
+                dispatch(setFilter({ key: 'subjectIds', value: current.filter((s: string) => s !== id) }));
+              } else {
+                dispatch(setFilter({ key: 'subjectIds', value: [...current, id] }));
+              }
+            }
+          }}
+        />
         <ReferenceLine y={refHi} stroke="#ef4444" strokeDasharray="5 5" label={{ value: 'ULN', fill: '#ef4444', fontSize: 9, position: 'right' }} />
         <ReferenceLine y={refLo} stroke="#64748b" strokeDasharray="5 5" label={{ value: 'LLN', fill: '#64748b', fontSize: 9, position: 'right' }} />
         {subjects.map((subj, idx) => (

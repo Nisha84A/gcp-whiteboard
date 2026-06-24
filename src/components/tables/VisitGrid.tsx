@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
-import { useFilteredData } from '@/hooks/useFilteredData';
 import { useAppSelector } from '@/store';
+import ClickableSubjectCell from './ClickableSubjectCell';
 
 export default function VisitGrid() {
-  const { visits } = useFilteredData();
   const subjects = useAppSelector((state) => state.data.subjects);
+  const visits = useAppSelector((state) => state.data.visits);
+  const selectedIds = useAppSelector((state) => state.filter.filters.subjectIds);
+  const hasFilter = selectedIds.length > 0;
 
   const { visitNames, grid } = useMemo(() => {
     const visitNames = Array.from(new Set(visits.map((v) => v.visit)));
@@ -37,32 +39,61 @@ export default function VisitGrid() {
           </tr>
         </thead>
         <tbody>
-          {subjects.map((subj) => (
-            <tr key={subj.id}>
-              <td className="px-3 py-1.5 text-[11px] text-slate-300 font-mono">{subj.id}</td>
-              {visitNames.map((vn) => {
-                const val = grid[subj.id]?.[vn];
-                let cellClass = 'bg-slate-700/60';
-                let content = <span className="text-green-400">✓</span>;
+          {subjects.map((subj) => {
+            const isSelected = hasFilter && selectedIds.includes(subj.id);
+            const isOther = hasFilter && !selectedIds.includes(subj.id);
 
-                if (val === null) {
-                  cellClass = 'bg-slate-800/40';
-                  content = <span className="text-slate-500 text-[10px]">N/A</span>;
-                } else if (val === false) {
-                  cellClass = 'bg-red-900/40';
-                  content = <span className="text-red-400">✖</span>;
-                }
+            return (
+              <tr key={subj.id}>
+                <td className={`px-3 py-1.5 text-[11px] ${isSelected ? 'text-cyan-300 font-bold' : ''}`}>
+                  <ClickableSubjectCell subjectId={subj.id} />
+                </td>
+                {visitNames.map((vn) => {
+                  const val = grid[subj.id]?.[vn];
 
-                return (
-                  <td key={vn} className="px-1 py-1">
-                    <div className={`w-16 h-8 rounded flex items-center justify-center text-xs ${cellClass}`}>
-                      {content}
-                    </div>
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
+                  if (val === null) {
+                    return (
+                      <td key={vn} className="px-1 py-1">
+                        <div className="w-16 h-8 rounded flex items-center justify-center text-xs bg-slate-800/40">
+                          <span className="text-slate-500 text-[10px]">N/A</span>
+                        </div>
+                      </td>
+                    );
+                  }
+
+                  if (val === false) {
+                    return (
+                      <td key={vn} className="px-1 py-1">
+                        <div className={`w-16 h-8 rounded flex items-center justify-center text-xs ${isSelected ? 'bg-red-800/60' : 'bg-red-900/40'}`}>
+                          <span className="text-red-400">✖</span>
+                        </div>
+                      </td>
+                    );
+                  }
+
+                  // Complete
+                  let cellClass = 'bg-slate-700/60';
+                  let checkColor = 'text-green-400';
+
+                  if (isSelected) {
+                    cellClass = 'bg-teal-800/70';
+                    checkColor = 'text-green-300';
+                  } else if (isOther) {
+                    cellClass = 'bg-slate-800/40';
+                    checkColor = 'text-slate-500';
+                  }
+
+                  return (
+                    <td key={vn} className="px-1 py-1">
+                      <div className={`w-16 h-8 rounded flex items-center justify-center text-xs ${cellClass}`}>
+                        <span className={checkColor}>✓</span>
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className="flex items-center gap-4 mt-4 justify-center">

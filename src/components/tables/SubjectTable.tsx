@@ -80,7 +80,10 @@ export default function SubjectTable() {
                     {qCount > 0 && (
                       <span className="text-[10px] text-red-400 font-semibold">► {qCount}</span>
                     )}
-                    <button className="px-2 py-0.5 text-[10px] text-slate-300 border border-slate-600 rounded hover:bg-slate-700 transition-colors">
+                    <button
+                      onClick={() => window.dispatchEvent(new CustomEvent('open-query-modal', { detail: { subjid: subj.id } }))}
+                      className="px-2 py-0.5 text-[10px] text-slate-300 border border-slate-600 rounded hover:bg-slate-700 transition-colors"
+                    >
                       Query
                     </button>
                   </span>

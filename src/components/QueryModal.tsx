@@ -5,11 +5,12 @@ import { useAppSelector } from '@/store';
 interface QueryModalProps {
   onClose: () => void;
   onSubmit: (query: { subjid: string; domain: string; variable: string; issue: string; priority: string }) => void;
+  prefilledSubject?: string;
 }
 
-export default function QueryModal({ onClose, onSubmit }: QueryModalProps) {
+export default function QueryModal({ onClose, onSubmit, prefilledSubject }: QueryModalProps) {
   const subjects = useAppSelector((state) => state.data.subjects);
-  const [subjid, setSubjid] = useState(subjects[0]?.id || '');
+  const [subjid, setSubjid] = useState(prefilledSubject || subjects[0]?.id || '');
   const [domain, setDomain] = useState('');
   const [variable, setVariable] = useState('');
   const [issue, setIssue] = useState('');

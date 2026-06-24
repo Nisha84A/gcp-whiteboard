@@ -28,6 +28,7 @@ export default function Dashboard() {
   const [queries, setQueries] = useState<Query[]>([]);
   const [showQueries, setShowQueries] = useState(false);
   const [showQueryModal, setShowQueryModal] = useState(false);
+  const [queryPrefilledSubject, setQueryPrefilledSubject] = useState<string | undefined>();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((state) => state.data.isLoading);
   const user = useAppSelector((state) => state.auth.user);
@@ -36,6 +37,18 @@ export default function Dashboard() {
     dispatch(loadData());
     fetch('/queries.json').then((r) => r.json()).then(setQueries);
   }, [dispatch]);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.subjid) {
+        setQueryPrefilledSubject(detail.subjid);
+      }
+      setShowQueryModal(true);
+    };
+    window.addEventListener('open-query-modal', handler);
+    return () => window.removeEventListener('open-query-modal', handler);
+  }, []);
 
   const handleDrop = (catalogItem: CatalogItem, x: number, y: number) => {
     const newItem: WhiteboardItemType = {
@@ -101,8 +114,9 @@ export default function Dashboard() {
 
       {showQueryModal && (
         <QueryModal
-          onClose={() => setShowQueryModal(false)}
+          onClose={() => { setShowQueryModal(false); setQueryPrefilledSubject(undefined); }}
           onSubmit={handleSubmitQuery}
+          prefilledSubject={queryPrefilledSubject}
         />
       )}
 

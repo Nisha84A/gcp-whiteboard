@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { X, BarChart3, List } from 'lucide-react';
 import { Resizable } from 're-resizable';
 import { WhiteboardItem as WhiteboardItemType } from '@/types';
+import { useAppSelector } from '@/store';
 import Visualization from './Visualization';
 
 interface WhiteboardItemProps {
@@ -9,9 +10,11 @@ interface WhiteboardItemProps {
   onRemove: (id: string) => void;
   onResize: (id: string, width: number, height: number) => void;
   onMove: (id: string, x: number, y: number) => void;
+  onFocus: (id: string) => void;
+  zIndex: number;
 }
 
-export default function WhiteboardItemComponent({ item, onRemove, onResize, onMove }: WhiteboardItemProps) {
+export default function WhiteboardItemComponent({ item, onRemove, onResize, onMove, onFocus, zIndex }: WhiteboardItemProps) {
   const [isDragging, setIsDragging] = useState(false);
   const dragOffsetRef = useRef({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -55,13 +58,15 @@ export default function WhiteboardItemComponent({ item, onRemove, onResize, onMo
     };
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
+  const selectedIds = useAppSelector((state) => state.filter.filters.subjectIds);
   const isChart = item.catalogItem.visualizationType === 'chart';
   const Icon = isChart ? BarChart3 : List;
 
   return (
     <div
       ref={containerRef}
-      style={{ position: 'absolute', left: `${item.x}px`, top: `${item.y}px`, zIndex: isDragging ? 100 : 10 }}
+      onMouseDown={() => onFocus(item.id)}
+      style={{ position: 'absolute', left: `${item.x}px`, top: `${item.y}px`, zIndex: isDragging ? 9999 : zIndex }}
     >
       <Resizable
         defaultSize={{ width: item.width, height: item.height }}
@@ -82,12 +87,19 @@ export default function WhiteboardItemComponent({ item, onRemove, onResize, onMo
               <Icon className={`w-4 h-4 ${isChart ? 'text-teal-400' : 'text-cyan-400'}`} />
               <span className="text-sm font-semibold text-white truncate">{item.catalogItem.label}</span>
             </div>
-            <button
-              onClick={() => onRemove(item.id)}
-              className="p-1 hover:bg-red-900/50 rounded text-slate-400 hover:text-red-400 transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              {selectedIds.length > 0 && (
+                <span className="text-[9px] font-semibold px-2 py-0.5 bg-cyan-900/50 text-cyan-400 border border-cyan-700 rounded">
+                  {selectedIds.length === 1 ? selectedIds[0] : `${selectedIds.length} subjects`}
+                </span>
+              )}
+              <button
+                onClick={() => onRemove(item.id)}
+                className="p-1 hover:bg-red-900/50 rounded text-slate-400 hover:text-red-400 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto overflow-x-hidden p-2">

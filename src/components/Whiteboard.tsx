@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { WhiteboardItem as WhiteboardItemType, CatalogItem } from '@/types';
 import WhiteboardItemComponent from './WhiteboardItem';
@@ -13,6 +13,18 @@ interface WhiteboardProps {
 
 export default function Whiteboard({ items, onDrop, onRemove, onMove, onResize }: WhiteboardProps) {
   const whiteboardRef = useRef<HTMLDivElement>(null);
+  const [focusedId, setFocusedId] = useState<string | null>(null);
+  const [focusOrder, setFocusOrder] = useState<string[]>([]);
+
+  const handleFocus = (id: string) => {
+    setFocusedId(id);
+    setFocusOrder((prev) => [...prev.filter((i) => i !== id), id]);
+  };
+
+  const getZIndex = (id: string) => {
+    const idx = focusOrder.indexOf(id);
+    return idx === -1 ? 10 : 10 + idx;
+  };
 
   const [{ isOver }, drop] = useDrop(
     () => ({
@@ -57,6 +69,8 @@ export default function Whiteboard({ items, onDrop, onRemove, onMove, onResize }
           onRemove={onRemove}
           onMove={onMove}
           onResize={onResize}
+          onFocus={handleFocus}
+          zIndex={getZIndex(item.id)}
         />
       ))}
     </div>

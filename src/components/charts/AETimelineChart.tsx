@@ -1,12 +1,44 @@
 import { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { useFilteredData } from '@/hooks/useFilteredData';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { setFilter } from '@/store/filterSlice';
 
 const SEVERITY_COLORS: Record<string, string> = {
   MILD: '#f59e0b',
   MODERATE: '#f97316',
   SEVERE: '#ef4444',
 };
+
+function ClickableYTick({ x, y, payload }: any) {
+  const dispatch = useAppDispatch();
+  const selectedIds = useAppSelector((state) => state.filter.filters.subjectIds);
+  const isActive = selectedIds.includes(payload.value);
+
+  const handleClick = () => {
+    if (isActive) {
+      dispatch(setFilter({ key: 'subjectIds', value: selectedIds.filter((id: string) => id !== payload.value) }));
+    } else {
+      dispatch(setFilter({ key: 'subjectIds', value: [...selectedIds, payload.value] }));
+    }
+  };
+
+  return (
+    <text
+      x={x}
+      y={y}
+      dy={4}
+      textAnchor="end"
+      fontSize={9}
+      fill={isActive ? '#22d3ee' : '#94a3b8'}
+      fontWeight={isActive ? 700 : 400}
+      style={{ cursor: 'pointer' }}
+      onClick={handleClick}
+    >
+      {payload.value}
+    </text>
+  );
+}
 
 export default function AETimelineChart() {
   const { ae } = useFilteredData();
@@ -33,7 +65,7 @@ export default function AETimelineChart() {
           tickMargin={4}
           label={{ value: 'Study Day', position: 'insideBottom', offset: -10, fill: '#94a3b8', fontSize: 10 }}
         />
-        <YAxis dataKey="subject" type="category" stroke="#94a3b8" fontSize={9} width={70} tickMargin={4} />
+        <YAxis dataKey="subject" type="category" width={70} tick={<ClickableYTick />} />
         <Tooltip
           contentStyle={{ background: '#1a2744', border: '1px solid #334155', borderRadius: 6 }}
           labelStyle={{ color: '#f1f5f9' }}
