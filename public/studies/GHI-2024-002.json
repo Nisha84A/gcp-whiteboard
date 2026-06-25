@@ -1,0 +1,62 @@
+{
+  "subjects": [
+    { "id": "GHI-001", "arm": "Drug GHI 5mg", "age": 72, "sex": "F", "site": "Site 09", "status": "Completed", "enrol": -28, "vital": "ALIVE" },
+    { "id": "GHI-002", "arm": "Drug GHI 10mg", "age": 68, "sex": "M", "site": "Site 09", "status": "Completed", "enrol": -21, "vital": "ALIVE" },
+    { "id": "GHI-003", "arm": "Placebo", "age": 75, "sex": "F", "site": "Site 10", "status": "Completed", "enrol": -14, "vital": "ALIVE" },
+    { "id": "GHI-004", "arm": "Drug GHI 5mg", "age": 70, "sex": "M", "site": "Site 10", "status": "Discontinued", "enrol": -18, "vital": "ALIVE" },
+    { "id": "GHI-005", "arm": "Drug GHI 10mg", "age": 66, "sex": "F", "site": "Site 09", "status": "Completed", "enrol": -25, "vital": "ALIVE" },
+    { "id": "GHI-006", "arm": "Placebo", "age": 78, "sex": "M", "site": "Site 10", "status": "Completed", "enrol": -12, "vital": "ALIVE" },
+    { "id": "GHI-007", "arm": "Drug GHI 5mg", "age": 69, "sex": "F", "site": "Site 09", "status": "Completed", "enrol": -30, "vital": "ALIVE" },
+    { "id": "GHI-008", "arm": "Drug GHI 10mg", "age": 74, "sex": "M", "site": "Site 10", "status": "Completed", "enrol": -16, "vital": "ALIVE" },
+    { "id": "GHI-009", "arm": "Placebo", "age": 71, "sex": "F", "site": "Site 09", "status": "Completed", "enrol": -22, "vital": "ALIVE" },
+    { "id": "GHI-010", "arm": "Drug GHI 10mg", "age": 67, "sex": "M", "site": "Site 10", "status": "Completed", "enrol": -20, "vital": "ALIVE" }
+  ],
+  "labs": [
+    { "subjid": "GHI-001", "lbtest": "MMSE", "lbstresn": 22, "lbstresu": "score", "lbdy": 1, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-001", "lbtest": "MMSE", "lbstresn": 23, "lbstresu": "score", "lbdy": 90, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-001", "lbtest": "MMSE", "lbstresn": 24, "lbstresu": "score", "lbdy": 180, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-002", "lbtest": "MMSE", "lbstresn": 20, "lbstresu": "score", "lbdy": 1, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-002", "lbtest": "MMSE", "lbstresn": 21, "lbstresu": "score", "lbdy": 90, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-002", "lbtest": "MMSE", "lbstresn": 22, "lbstresu": "score", "lbdy": 180, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-003", "lbtest": "MMSE", "lbstresn": 23, "lbstresu": "score", "lbdy": 1, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-003", "lbtest": "MMSE", "lbstresn": 22, "lbstresu": "score", "lbdy": 90, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-003", "lbtest": "MMSE", "lbstresn": 21, "lbstresu": "score", "lbdy": 180, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-004", "lbtest": "Amyloid PET", "lbstresn": 1.4, "lbstresu": "SUVR", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 1.1 },
+    { "subjid": "GHI-005", "lbtest": "MMSE", "lbstresn": 21, "lbstresu": "score", "lbdy": 1, "lbnrlo": 24, "lbnrhi": 30 },
+    { "subjid": "GHI-005", "lbtest": "MMSE", "lbstresn": 23, "lbstresu": "score", "lbdy": 180, "lbnrlo": 24, "lbnrhi": 30 }
+  ],
+  "ae": [
+    { "subjid": "GHI-001", "aeterm": "Headache", "aesev": "MILD", "aestdy": 14, "aeendy": 21, "aerel": "POSSIBLY RELATED" },
+    { "subjid": "GHI-002", "aeterm": "Dizziness", "aesev": "MILD", "aestdy": 7, "aeendy": 10, "aerel": "RELATED" },
+    { "subjid": "GHI-004", "aeterm": "ARIA-E", "aesev": "MODERATE", "aestdy": 45, "aeendy": 90, "aerel": "RELATED" },
+    { "subjid": "GHI-005", "aeterm": "Nausea", "aesev": "MILD", "aestdy": 3, "aeendy": 7, "aerel": "NOT RELATED" },
+    { "subjid": "GHI-008", "aeterm": "Confusion", "aesev": "MILD", "aestdy": 30, "aeendy": 35, "aerel": "POSSIBLY RELATED" }
+  ],
+  "ex": [
+    { "subjid": "GHI-001", "extrt": "Drug GHI", "exdose": 5, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q2W", "exstdy": 1, "exendy": 180, "excomp": true },
+    { "subjid": "GHI-002", "extrt": "Drug GHI", "exdose": 10, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q2W", "exstdy": 1, "exendy": 180, "excomp": true },
+    { "subjid": "GHI-003", "extrt": "Placebo", "exdose": 0, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q2W", "exstdy": 1, "exendy": 180, "excomp": true },
+    { "subjid": "GHI-004", "extrt": "Drug GHI", "exdose": 5, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q2W", "exstdy": 1, "exendy": 90, "excomp": false }
+  ],
+  "mh": [
+    { "subjid": "GHI-001", "mhdecod": "Mild Cognitive Impairment", "mhcat": "NEUROLOGICAL", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "GHI-002", "mhdecod": "Early Alzheimer's Disease", "mhcat": "NEUROLOGICAL", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "GHI-003", "mhdecod": "Mild Cognitive Impairment", "mhcat": "NEUROLOGICAL", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "GHI-004", "mhdecod": "Early Alzheimer's Disease", "mhcat": "NEUROLOGICAL", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "GHI-004", "mhdecod": "Hypertension", "mhcat": "CARDIOVASCULAR", "mhoccur": "Y", "mhstat": "ONGOING" }
+  ],
+  "cm": [
+    { "subjid": "GHI-001", "cmtrt": "Donepezil", "cmdose": 10, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -180, "cmendy": 180, "cmongo": true },
+    { "subjid": "GHI-002", "cmtrt": "Memantine", "cmdose": 10, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -90, "cmendy": 180, "cmongo": true },
+    { "subjid": "GHI-004", "cmtrt": "Amlodipine", "cmdose": 5, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -365, "cmendy": 90, "cmongo": true }
+  ],
+  "visits": [
+    { "subjid": "GHI-001", "visit": "Screening", "visitdy": -28, "complete": true },
+    { "subjid": "GHI-001", "visit": "Baseline", "visitdy": 1, "complete": true },
+    { "subjid": "GHI-001", "visit": "Week 12", "visitdy": 84, "complete": true },
+    { "subjid": "GHI-001", "visit": "Week 24", "visitdy": 168, "complete": true },
+    { "subjid": "GHI-004", "visit": "Screening", "visitdy": -18, "complete": true },
+    { "subjid": "GHI-004", "visit": "Baseline", "visitdy": 1, "complete": true },
+    { "subjid": "GHI-004", "visit": "Week 12", "visitdy": 84, "complete": false }
+  ]
+}

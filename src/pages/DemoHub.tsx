@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Activity, Bell, Sun, Moon, LogOut } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { logout } from '@/store/authSlice';
-import { toggleTheme } from '@/store/themeSlice';
-import NotificationPanel from '@/components/NotificationPanel';
-import StatsBar from '@/components/StatsBar';
-import DemoCard from '@/components/DemoCard';
+import { useAppDispatch, useAppSelector } from '@/shared/store';
+import { logout } from '@/shared/store/authSlice';
+import { toggleTheme } from '@/shared/store/themeSlice';
+import NotificationPanel from '@/shared/components/NotificationPanel';
+import StatsBar from '@/shared/components/StatsBar';
+import DemoCard from '@/shared/components/DemoCard';
 
 interface HubData {
   header: { subtitle: string };

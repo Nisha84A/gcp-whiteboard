@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { registerThunk, setError } from '@/store/authSlice';
+import { useAppDispatch, useAppSelector } from '@/shared/store';
+import { registerThunk, setError } from '@/shared/store/authSlice';
 import { Activity } from 'lucide-react';
 
 export default function Register() {

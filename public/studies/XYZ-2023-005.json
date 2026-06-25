@@ -1,0 +1,69 @@
+{
+  "subjects": [
+    { "id": "XYZ-101", "arm": "Drug XYZ 10mg", "age": 62, "sex": "M", "site": "Site 04", "status": "Completed", "enrol": -28, "vital": "ALIVE" },
+    { "id": "XYZ-102", "arm": "Drug XYZ 20mg", "age": 55, "sex": "F", "site": "Site 04", "status": "Completed", "enrol": -21, "vital": "ALIVE" },
+    { "id": "XYZ-103", "arm": "Drug XYZ 10mg", "age": 71, "sex": "M", "site": "Site 05", "status": "Completed", "enrol": -14, "vital": "ALIVE" },
+    { "id": "XYZ-104", "arm": "Placebo", "age": 58, "sex": "F", "site": "Site 05", "status": "Completed", "enrol": -30, "vital": "ALIVE" },
+    { "id": "XYZ-105", "arm": "Drug XYZ 20mg", "age": 66, "sex": "M", "site": "Site 06", "status": "Discontinued", "enrol": -18, "vital": "ALIVE" },
+    { "id": "XYZ-106", "arm": "Drug XYZ 10mg", "age": 49, "sex": "F", "site": "Site 06", "status": "Completed", "enrol": -25, "vital": "ALIVE" },
+    { "id": "XYZ-107", "arm": "Placebo", "age": 73, "sex": "M", "site": "Site 04", "status": "Completed", "enrol": -12, "vital": "ALIVE" },
+    { "id": "XYZ-108", "arm": "Drug XYZ 20mg", "age": 60, "sex": "F", "site": "Site 05", "status": "Completed", "enrol": -20, "vital": "ALIVE" },
+    { "id": "XYZ-109", "arm": "Drug XYZ 10mg", "age": 68, "sex": "M", "site": "Site 06", "status": "Completed", "enrol": -16, "vital": "ALIVE" },
+    { "id": "XYZ-110", "arm": "Placebo", "age": 54, "sex": "F", "site": "Site 04", "status": "Completed", "enrol": -22, "vital": "ALIVE" },
+    { "id": "XYZ-111", "arm": "Drug XYZ 20mg", "age": 65, "sex": "M", "site": "Site 05", "status": "Discontinued", "enrol": -10, "vital": "ALIVE" },
+    { "id": "XYZ-112", "arm": "Drug XYZ 10mg", "age": 57, "sex": "F", "site": "Site 06", "status": "Completed", "enrol": -24, "vital": "ALIVE" }
+  ],
+  "labs": [
+    { "subjid": "XYZ-101", "lbtest": "LDL", "lbstresn": 142, "lbstresu": "mg/dL", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-101", "lbtest": "LDL", "lbstresn": 128, "lbstresu": "mg/dL", "lbdy": 30, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-101", "lbtest": "LDL", "lbstresn": 115, "lbstresu": "mg/dL", "lbdy": 60, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-102", "lbtest": "LDL", "lbstresn": 158, "lbstresu": "mg/dL", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-102", "lbtest": "LDL", "lbstresn": 135, "lbstresu": "mg/dL", "lbdy": 30, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-102", "lbtest": "LDL", "lbstresn": 118, "lbstresu": "mg/dL", "lbdy": 60, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-103", "lbtest": "CRP", "lbstresn": 3.2, "lbstresu": "mg/L", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 3 },
+    { "subjid": "XYZ-103", "lbtest": "CRP", "lbstresn": 2.1, "lbstresu": "mg/L", "lbdy": 30, "lbnrlo": 0, "lbnrhi": 3 },
+    { "subjid": "XYZ-104", "lbtest": "LDL", "lbstresn": 145, "lbstresu": "mg/dL", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-104", "lbtest": "LDL", "lbstresn": 140, "lbstresu": "mg/dL", "lbdy": 60, "lbnrlo": 0, "lbnrhi": 130 },
+    { "subjid": "XYZ-105", "lbtest": "Troponin", "lbstresn": 0.08, "lbstresu": "ng/mL", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 0.04 },
+    { "subjid": "XYZ-105", "lbtest": "Troponin", "lbstresn": 0.12, "lbstresu": "ng/mL", "lbdy": 15, "lbnrlo": 0, "lbnrhi": 0.04 }
+  ],
+  "ae": [
+    { "subjid": "XYZ-101", "aeterm": "Myalgia", "aesev": "MILD", "aestdy": 5, "aeendy": 12, "aerel": "POSSIBLY RELATED" },
+    { "subjid": "XYZ-102", "aeterm": "Headache", "aesev": "MILD", "aestdy": 3, "aeendy": 5, "aerel": "NOT RELATED" },
+    { "subjid": "XYZ-103", "aeterm": "Dizziness", "aesev": "MODERATE", "aestdy": 8, "aeendy": 14, "aerel": "POSSIBLY RELATED" },
+    { "subjid": "XYZ-105", "aeterm": "Chest Pain", "aesev": "SEVERE", "aestdy": 12, "aeendy": 15, "aerel": "RELATED" },
+    { "subjid": "XYZ-105", "aeterm": "Dyspnea", "aesev": "MODERATE", "aestdy": 13, "aeendy": 18, "aerel": "RELATED" },
+    { "subjid": "XYZ-108", "aeterm": "Nausea", "aesev": "MILD", "aestdy": 2, "aeendy": 4, "aerel": "NOT RELATED" },
+    { "subjid": "XYZ-111", "aeterm": "Peripheral Edema", "aesev": "MODERATE", "aestdy": 20, "aeendy": 35, "aerel": "RELATED" }
+  ],
+  "ex": [
+    { "subjid": "XYZ-101", "extrt": "Drug XYZ", "exdose": 10, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD", "exstdy": 1, "exendy": 90, "excomp": true },
+    { "subjid": "XYZ-102", "extrt": "Drug XYZ", "exdose": 20, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD", "exstdy": 1, "exendy": 90, "excomp": true },
+    { "subjid": "XYZ-103", "extrt": "Drug XYZ", "exdose": 10, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD", "exstdy": 1, "exendy": 90, "excomp": true },
+    { "subjid": "XYZ-104", "extrt": "Placebo", "exdose": 0, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD", "exstdy": 1, "exendy": 90, "excomp": true },
+    { "subjid": "XYZ-105", "extrt": "Drug XYZ", "exdose": 20, "exdosu": "mg", "exroute": "ORAL", "exdosfrq": "QD", "exstdy": 1, "exendy": 30, "excomp": false }
+  ],
+  "mh": [
+    { "subjid": "XYZ-101", "mhdecod": "Hypertension", "mhcat": "CARDIOVASCULAR", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "XYZ-101", "mhdecod": "Hyperlipidemia", "mhcat": "ENDOCRINE", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "XYZ-103", "mhdecod": "Atrial Fibrillation", "mhcat": "CARDIOVASCULAR", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "XYZ-105", "mhdecod": "Coronary Artery Disease", "mhcat": "CARDIOVASCULAR", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "XYZ-107", "mhdecod": "Type 2 Diabetes", "mhcat": "ENDOCRINE", "mhoccur": "Y", "mhstat": "ONGOING" }
+  ],
+  "cm": [
+    { "subjid": "XYZ-101", "cmtrt": "Lisinopril", "cmdose": 20, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -365, "cmendy": 90, "cmongo": true },
+    { "subjid": "XYZ-101", "cmtrt": "Aspirin", "cmdose": 81, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -200, "cmendy": 90, "cmongo": true },
+    { "subjid": "XYZ-103", "cmtrt": "Warfarin", "cmdose": 5, "cmdosu": "mg", "cmroute": "ORAL", "cmstdy": -500, "cmendy": 90, "cmongo": true },
+    { "subjid": "XYZ-105", "cmtrt": "Nitroglycerin", "cmdose": 0.4, "cmdosu": "mg", "cmroute": "SL", "cmstdy": 12, "cmendy": 15, "cmongo": false }
+  ],
+  "visits": [
+    { "subjid": "XYZ-101", "visit": "Screening", "visitdy": -7, "complete": true },
+    { "subjid": "XYZ-101", "visit": "Day 1", "visitdy": 1, "complete": true },
+    { "subjid": "XYZ-101", "visit": "Week 4", "visitdy": 29, "complete": true },
+    { "subjid": "XYZ-101", "visit": "Week 8", "visitdy": 57, "complete": true },
+    { "subjid": "XYZ-101", "visit": "Week 12", "visitdy": 85, "complete": true },
+    { "subjid": "XYZ-105", "visit": "Screening", "visitdy": -7, "complete": true },
+    { "subjid": "XYZ-105", "visit": "Day 1", "visitdy": 1, "complete": true },
+    { "subjid": "XYZ-105", "visit": "Week 4", "visitdy": 29, "complete": false }
+  ]
+}

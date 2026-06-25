@@ -1,0 +1,56 @@
+{
+  "subjects": [
+    { "id": "DEF-001", "arm": "Combo Low Dose", "age": 58, "sex": "M", "site": "Site 07", "status": "Completed", "enrol": -14, "vital": "ALIVE" },
+    { "id": "DEF-002", "arm": "Combo High Dose", "age": 63, "sex": "F", "site": "Site 07", "status": "Completed", "enrol": -10, "vital": "ALIVE" },
+    { "id": "DEF-003", "arm": "Combo Low Dose", "age": 45, "sex": "M", "site": "Site 08", "status": "Discontinued", "enrol": -7, "vital": "DEAD", "dthdy": 42, "dthcaus": "Disease Progression" },
+    { "id": "DEF-004", "arm": "Combo High Dose", "age": 71, "sex": "F", "site": "Site 08", "status": "Completed", "enrol": -21, "vital": "ALIVE" },
+    { "id": "DEF-005", "arm": "Monotherapy", "age": 52, "sex": "M", "site": "Site 07", "status": "Completed", "enrol": -12, "vital": "ALIVE" },
+    { "id": "DEF-006", "arm": "Monotherapy", "age": 67, "sex": "F", "site": "Site 08", "status": "Completed", "enrol": -18, "vital": "ALIVE" }
+  ],
+  "labs": [
+    { "subjid": "DEF-001", "lbtest": "ANC", "lbstresn": 4.2, "lbstresu": "10^9/L", "lbdy": 1, "lbnrlo": 1.5, "lbnrhi": 8 },
+    { "subjid": "DEF-001", "lbtest": "ANC", "lbstresn": 2.8, "lbstresu": "10^9/L", "lbdy": 14, "lbnrlo": 1.5, "lbnrhi": 8 },
+    { "subjid": "DEF-001", "lbtest": "ANC", "lbstresn": 1.2, "lbstresu": "10^9/L", "lbdy": 28, "lbnrlo": 1.5, "lbnrhi": 8 },
+    { "subjid": "DEF-002", "lbtest": "ANC", "lbstresn": 5.1, "lbstresu": "10^9/L", "lbdy": 1, "lbnrlo": 1.5, "lbnrhi": 8 },
+    { "subjid": "DEF-002", "lbtest": "ANC", "lbstresn": 3.4, "lbstresu": "10^9/L", "lbdy": 14, "lbnrlo": 1.5, "lbnrhi": 8 },
+    { "subjid": "DEF-003", "lbtest": "Tumor Marker", "lbstresn": 85, "lbstresu": "U/mL", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 35 },
+    { "subjid": "DEF-003", "lbtest": "Tumor Marker", "lbstresn": 120, "lbstresu": "U/mL", "lbdy": 28, "lbnrlo": 0, "lbnrhi": 35 },
+    { "subjid": "DEF-004", "lbtest": "ANC", "lbstresn": 3.8, "lbstresu": "10^9/L", "lbdy": 1, "lbnrlo": 1.5, "lbnrhi": 8 },
+    { "subjid": "DEF-005", "lbtest": "CRP", "lbstresn": 8.5, "lbstresu": "mg/L", "lbdy": 1, "lbnrlo": 0, "lbnrhi": 3 },
+    { "subjid": "DEF-005", "lbtest": "CRP", "lbstresn": 4.2, "lbstresu": "mg/L", "lbdy": 28, "lbnrlo": 0, "lbnrhi": 3 }
+  ],
+  "ae": [
+    { "subjid": "DEF-001", "aeterm": "Neutropenia", "aesev": "MODERATE", "aestdy": 21, "aeendy": 35, "aerel": "RELATED" },
+    { "subjid": "DEF-002", "aeterm": "Fatigue", "aesev": "MILD", "aestdy": 7, "aeendy": 21, "aerel": "RELATED" },
+    { "subjid": "DEF-002", "aeterm": "Rash", "aesev": "MODERATE", "aestdy": 14, "aeendy": 28, "aerel": "RELATED" },
+    { "subjid": "DEF-003", "aeterm": "Pneumonitis", "aesev": "SEVERE", "aestdy": 28, "aeendy": 42, "aerel": "RELATED" },
+    { "subjid": "DEF-004", "aeterm": "Diarrhea", "aesev": "MILD", "aestdy": 3, "aeendy": 10, "aerel": "POSSIBLY RELATED" },
+    { "subjid": "DEF-005", "aeterm": "Infusion Reaction", "aesev": "MILD", "aestdy": 1, "aeendy": 1, "aerel": "RELATED" }
+  ],
+  "ex": [
+    { "subjid": "DEF-001", "extrt": "Combo Low", "exdose": 200, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q3W", "exstdy": 1, "exendy": 84, "excomp": true },
+    { "subjid": "DEF-002", "extrt": "Combo High", "exdose": 400, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q3W", "exstdy": 1, "exendy": 84, "excomp": true },
+    { "subjid": "DEF-003", "extrt": "Combo Low", "exdose": 200, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q3W", "exstdy": 1, "exendy": 42, "excomp": false },
+    { "subjid": "DEF-005", "extrt": "Monotherapy", "exdose": 300, "exdosu": "mg", "exroute": "IV", "exdosfrq": "Q3W", "exstdy": 1, "exendy": 84, "excomp": true }
+  ],
+  "mh": [
+    { "subjid": "DEF-001", "mhdecod": "Non-Small Cell Lung Cancer", "mhcat": "ONCOLOGY", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "DEF-002", "mhdecod": "Breast Cancer", "mhcat": "ONCOLOGY", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "DEF-003", "mhdecod": "Pancreatic Cancer", "mhcat": "ONCOLOGY", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "DEF-004", "mhdecod": "Colorectal Cancer", "mhcat": "ONCOLOGY", "mhoccur": "Y", "mhstat": "ONGOING" },
+    { "subjid": "DEF-005", "mhdecod": "Melanoma", "mhcat": "ONCOLOGY", "mhoccur": "Y", "mhstat": "ONGOING" }
+  ],
+  "cm": [
+    { "subjid": "DEF-001", "cmtrt": "Ondansetron", "cmdose": 8, "cmdosu": "mg", "cmroute": "IV", "cmstdy": 1, "cmendy": 84, "cmongo": false },
+    { "subjid": "DEF-003", "cmtrt": "Dexamethasone", "cmdose": 10, "cmdosu": "mg", "cmroute": "IV", "cmstdy": 28, "cmendy": 42, "cmongo": false }
+  ],
+  "visits": [
+    { "subjid": "DEF-001", "visit": "Screening", "visitdy": -14, "complete": true },
+    { "subjid": "DEF-001", "visit": "Cycle 1", "visitdy": 1, "complete": true },
+    { "subjid": "DEF-001", "visit": "Cycle 2", "visitdy": 22, "complete": true },
+    { "subjid": "DEF-001", "visit": "Cycle 3", "visitdy": 43, "complete": true },
+    { "subjid": "DEF-003", "visit": "Screening", "visitdy": -7, "complete": true },
+    { "subjid": "DEF-003", "visit": "Cycle 1", "visitdy": 1, "complete": true },
+    { "subjid": "DEF-003", "visit": "Cycle 2", "visitdy": 22, "complete": false }
+  ]
+}

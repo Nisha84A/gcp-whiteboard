@@ -1,0 +1,967 @@
+{
+  "subjects": [
+    {
+      "id": "SUBJ-001",
+      "arm": "Treatment A",
+      "age": 45,
+      "sex": "M",
+      "site": "Site 01",
+      "status": "Completed",
+      "enrol": -21,
+      "vital": "ALIVE"
+    },
+    {
+      "id": "SUBJ-002",
+      "arm": "Treatment B",
+      "age": 52,
+      "sex": "F",
+      "site": "Site 01",
+      "status": "Completed",
+      "enrol": -18,
+      "vital": "ALIVE"
+    },
+    {
+      "id": "SUBJ-003",
+      "arm": "Treatment A",
+      "age": 38,
+      "sex": "F",
+      "site": "Site 02",
+      "status": "Discontinued",
+      "enrol": -14,
+      "vital": "DEAD",
+      "dthdy": 32,
+      "dthcaus": "Treatment-Related AE"
+    },
+    {
+      "id": "SUBJ-004",
+      "arm": "Placebo",
+      "age": 61,
+      "sex": "M",
+      "site": "Site 02",
+      "status": "Completed",
+      "enrol": -30,
+      "vital": "ALIVE"
+    },
+    {
+      "id": "SUBJ-005",
+      "arm": "Treatment B",
+      "age": 47,
+      "sex": "F",
+      "site": "Site 03",
+      "status": "Completed",
+      "enrol": -12,
+      "vital": "ALIVE"
+    },
+    {
+      "id": "SUBJ-006",
+      "arm": "Treatment A",
+      "age": 55,
+      "sex": "M",
+      "site": "Site 03",
+      "status": "Completed",
+      "enrol": -28,
+      "vital": "ALIVE"
+    },
+    {
+      "id": "SUBJ-007",
+      "arm": "Placebo",
+      "age": 43,
+      "sex": "F",
+      "site": "Site 01",
+      "status": "Discontinued",
+      "enrol": -9,
+      "vital": "DEAD",
+      "dthdy": 45,
+      "dthcaus": "Disease Progression"
+    },
+    {
+      "id": "SUBJ-008",
+      "arm": "Treatment B",
+      "age": 59,
+      "sex": "M",
+      "site": "Site 02",
+      "status": "Completed",
+      "enrol": -25,
+      "vital": "ALIVE"
+    }
+  ],
+  "labs": [
+    {
+      "subjid": "SUBJ-001",
+      "lbtest": "ALT",
+      "lbstresn": 28,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-001",
+      "lbtest": "ALT",
+      "lbstresn": 35,
+      "lbstresu": "U/L",
+      "lbdy": 15,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-001",
+      "lbtest": "ALT",
+      "lbstresn": 42,
+      "lbstresu": "U/L",
+      "lbdy": 30,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-002",
+      "lbtest": "ALT",
+      "lbstresn": 22,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-002",
+      "lbtest": "ALT",
+      "lbstresn": 26,
+      "lbstresu": "U/L",
+      "lbdy": 15,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-002",
+      "lbtest": "ALT",
+      "lbstresn": 72,
+      "lbstresu": "U/L",
+      "lbdy": 30,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-003",
+      "lbtest": "ALT",
+      "lbstresn": 45,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-003",
+      "lbtest": "ALT",
+      "lbstresn": 92,
+      "lbstresu": "U/L",
+      "lbdy": 15,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-004",
+      "lbtest": "ALT",
+      "lbstresn": 18,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-004",
+      "lbtest": "ALT",
+      "lbstresn": 20,
+      "lbstresu": "U/L",
+      "lbdy": 15,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-005",
+      "lbtest": "ALT",
+      "lbstresn": 31,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-005",
+      "lbtest": "ALT",
+      "lbstresn": 39,
+      "lbstresu": "U/L",
+      "lbdy": 15,
+      "lbnrlo": 7,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-001",
+      "lbtest": "AST",
+      "lbstresn": 24,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 10,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-001",
+      "lbtest": "AST",
+      "lbstresn": 31,
+      "lbstresu": "U/L",
+      "lbdy": 30,
+      "lbnrlo": 10,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-002",
+      "lbtest": "AST",
+      "lbstresn": 20,
+      "lbstresu": "U/L",
+      "lbdy": 1,
+      "lbnrlo": 10,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-002",
+      "lbtest": "AST",
+      "lbstresn": 58,
+      "lbstresu": "U/L",
+      "lbdy": 30,
+      "lbnrlo": 10,
+      "lbnrhi": 40
+    },
+    {
+      "subjid": "SUBJ-001",
+      "lbtest": "Creatinine",
+      "lbstresn": 0.9,
+      "lbstresu": "mg/dL",
+      "lbdy": 1,
+      "lbnrlo": 0.6,
+      "lbnrhi": 1.2
+    },
+    {
+      "subjid": "SUBJ-002",
+      "lbtest": "Creatinine",
+      "lbstresn": 1.1,
+      "lbstresu": "mg/dL",
+      "lbdy": 1,
+      "lbnrlo": 0.6,
+      "lbnrhi": 1.2
+    }
+  ],
+  "ae": [
+    {
+      "subjid": "SUBJ-001",
+      "aeterm": "Headache",
+      "aesev": "MILD",
+      "aestdy": 3,
+      "aeendy": 7,
+      "aerel": "POSSIBLY RELATED"
+    },
+    {
+      "subjid": "SUBJ-001",
+      "aeterm": "Nausea",
+      "aesev": "MILD",
+      "aestdy": 5,
+      "aeendy": 9,
+      "aerel": "RELATED"
+    },
+    {
+      "subjid": "SUBJ-002",
+      "aeterm": "Fatigue",
+      "aesev": "MODERATE",
+      "aestdy": 8,
+      "aeendy": 18,
+      "aerel": "POSSIBLY RELATED"
+    },
+    {
+      "subjid": "SUBJ-002",
+      "aeterm": "Dizziness",
+      "aesev": "MILD",
+      "aestdy": 12,
+      "aeendy": 15,
+      "aerel": "NOT RELATED"
+    },
+    {
+      "subjid": "SUBJ-003",
+      "aeterm": "Headache",
+      "aesev": "SEVERE",
+      "aestdy": 10,
+      "aeendy": 28,
+      "aerel": "RELATED"
+    },
+    {
+      "subjid": "SUBJ-003",
+      "aeterm": "Vomiting",
+      "aesev": "SEVERE",
+      "aestdy": 14,
+      "aeendy": 30,
+      "aerel": "RELATED"
+    },
+    {
+      "subjid": "SUBJ-004",
+      "aeterm": "Rash",
+      "aesev": "MILD",
+      "aestdy": 6,
+      "aeendy": 12,
+      "aerel": "NOT RELATED"
+    },
+    {
+      "subjid": "SUBJ-005",
+      "aeterm": "Insomnia",
+      "aesev": "MILD",
+      "aestdy": 4,
+      "aeendy": 20,
+      "aerel": "POSSIBLY RELATED"
+    },
+    {
+      "subjid": "SUBJ-005",
+      "aeterm": "Nausea",
+      "aesev": "MODERATE",
+      "aestdy": 15,
+      "aeendy": 22,
+      "aerel": "RELATED"
+    },
+    {
+      "subjid": "SUBJ-006",
+      "aeterm": "Headache",
+      "aesev": "MILD",
+      "aestdy": 2,
+      "aeendy": 5,
+      "aerel": "RELATED"
+    },
+    {
+      "subjid": "SUBJ-007",
+      "aeterm": "Fatigue",
+      "aesev": "MODERATE",
+      "aestdy": 7,
+      "aeendy": 35,
+      "aerel": "NOT RELATED"
+    },
+    {
+      "subjid": "SUBJ-007",
+      "aeterm": "Dizziness",
+      "aesev": "MODERATE",
+      "aestdy": 20,
+      "aeendy": 40,
+      "aerel": "POSSIBLY RELATED"
+    },
+    {
+      "subjid": "SUBJ-008",
+      "aeterm": "Rash",
+      "aesev": "MILD",
+      "aestdy": 9,
+      "aeendy": 14,
+      "aerel": "NOT RELATED"
+    },
+    {
+      "subjid": "SUBJ-008",
+      "aeterm": "Nausea",
+      "aesev": "MILD",
+      "aestdy": 3,
+      "aeendy": 6,
+      "aerel": "RELATED"
+    }
+  ],
+  "ex": [
+    {
+      "subjid": "SUBJ-001",
+      "extrt": "Drug ABC",
+      "exdose": 50,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "QD",
+      "exstdy": 1,
+      "exendy": 84,
+      "excomp": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "extrt": "Drug XYZ",
+      "exdose": 75,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "BID",
+      "exstdy": 1,
+      "exendy": 84,
+      "excomp": true
+    },
+    {
+      "subjid": "SUBJ-003",
+      "extrt": "Drug ABC",
+      "exdose": 50,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "QD",
+      "exstdy": 1,
+      "exendy": 32,
+      "excomp": false
+    },
+    {
+      "subjid": "SUBJ-004",
+      "extrt": "Placebo",
+      "exdose": 0,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "QD",
+      "exstdy": 1,
+      "exendy": 84,
+      "excomp": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "extrt": "Drug XYZ",
+      "exdose": 75,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "BID",
+      "exstdy": 1,
+      "exendy": 84,
+      "excomp": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "extrt": "Drug ABC",
+      "exdose": 50,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "QD",
+      "exstdy": 1,
+      "exendy": 84,
+      "excomp": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "extrt": "Placebo",
+      "exdose": 0,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "QD",
+      "exstdy": 1,
+      "exendy": 45,
+      "excomp": false
+    },
+    {
+      "subjid": "SUBJ-008",
+      "extrt": "Drug XYZ",
+      "exdose": 75,
+      "exdosu": "mg",
+      "exroute": "ORAL",
+      "exdosfrq": "BID",
+      "exstdy": 1,
+      "exendy": 84,
+      "excomp": true
+    }
+  ],
+  "mh": [
+    {
+      "subjid": "SUBJ-001",
+      "mhdecod": "Type 2 Diabetes",
+      "mhcat": "ENDOCRINE",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-001",
+      "mhdecod": "Hypertension",
+      "mhcat": "CARDIOVASCULAR",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-002",
+      "mhdecod": "Hypertension",
+      "mhcat": "CARDIOVASCULAR",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-002",
+      "mhdecod": "Osteoarthritis",
+      "mhcat": "MUSCULOSKELETAL",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-003",
+      "mhdecod": "Depression",
+      "mhcat": "PSYCHIATRIC",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-003",
+      "mhdecod": "Migraine",
+      "mhcat": "NEUROLOGICAL",
+      "mhoccur": "Y",
+      "mhstat": "RESOLVED"
+    },
+    {
+      "subjid": "SUBJ-004",
+      "mhdecod": "Hyperlipidemia",
+      "mhcat": "ENDOCRINE",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-004",
+      "mhdecod": "Coronary Artery Disease",
+      "mhcat": "CARDIOVASCULAR",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-005",
+      "mhdecod": "Type 2 Diabetes",
+      "mhcat": "ENDOCRINE",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-005",
+      "mhdecod": "GERD",
+      "mhcat": "GASTROINTESTINAL",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-006",
+      "mhdecod": "Hypertension",
+      "mhcat": "CARDIOVASCULAR",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-007",
+      "mhdecod": "Depression",
+      "mhcat": "PSYCHIATRIC",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-007",
+      "mhdecod": "Insomnia",
+      "mhcat": "PSYCHIATRIC",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-008",
+      "mhdecod": "Hyperlipidemia",
+      "mhcat": "ENDOCRINE",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    },
+    {
+      "subjid": "SUBJ-008",
+      "mhdecod": "Type 2 Diabetes",
+      "mhcat": "ENDOCRINE",
+      "mhoccur": "Y",
+      "mhstat": "ONGOING"
+    }
+  ],
+  "cm": [
+    {
+      "subjid": "SUBJ-001",
+      "cmtrt": "Metformin",
+      "cmdose": 500,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -180,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-001",
+      "cmtrt": "Lisinopril",
+      "cmdose": 10,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -365,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "cmtrt": "Atorvastatin",
+      "cmdose": 20,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -90,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-003",
+      "cmtrt": "Metformin",
+      "cmdose": 1000,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -200,
+      "cmendy": 30,
+      "cmongo": false
+    },
+    {
+      "subjid": "SUBJ-003",
+      "cmtrt": "Ondansetron",
+      "cmdose": 4,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": 14,
+      "cmendy": 28,
+      "cmongo": false
+    },
+    {
+      "subjid": "SUBJ-004",
+      "cmtrt": "Amlodipine",
+      "cmdose": 5,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -400,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-004",
+      "cmtrt": "Aspirin",
+      "cmdose": 81,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -500,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "cmtrt": "Omeprazole",
+      "cmdose": 20,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -60,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "cmtrt": "Metformin",
+      "cmdose": 750,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -150,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "cmtrt": "Lisinopril",
+      "cmdose": 20,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -300,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "cmtrt": "Ibuprofen",
+      "cmdose": 400,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": 7,
+      "cmendy": 35,
+      "cmongo": false
+    },
+    {
+      "subjid": "SUBJ-008",
+      "cmtrt": "Atorvastatin",
+      "cmdose": 40,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -120,
+      "cmendy": 60,
+      "cmongo": true
+    },
+    {
+      "subjid": "SUBJ-008",
+      "cmtrt": "Metoprolol",
+      "cmdose": 25,
+      "cmdosu": "mg",
+      "cmroute": "ORAL",
+      "cmstdy": -250,
+      "cmendy": 60,
+      "cmongo": true
+    }
+  ],
+  "visits": [
+    {
+      "subjid": "SUBJ-001",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-001",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-001",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-001",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-001",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-001",
+      "visit": "Week 12",
+      "visitdy": 85,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-002",
+      "visit": "Week 12",
+      "visitdy": 85,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-003",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-003",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-003",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-003",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": false
+    },
+    {
+      "subjid": "SUBJ-004",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-004",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-004",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-004",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-004",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-004",
+      "visit": "Week 12",
+      "visitdy": 85,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-005",
+      "visit": "Week 12",
+      "visitdy": 85,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-006",
+      "visit": "Week 12",
+      "visitdy": 85,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-007",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": false
+    },
+    {
+      "subjid": "SUBJ-008",
+      "visit": "Screening",
+      "visitdy": -7,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-008",
+      "visit": "Day 1",
+      "visitdy": 1,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-008",
+      "visit": "Week 2",
+      "visitdy": 15,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-008",
+      "visit": "Week 4",
+      "visitdy": 29,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-008",
+      "visit": "Week 8",
+      "visitdy": 57,
+      "complete": true
+    },
+    {
+      "subjid": "SUBJ-008",
+      "visit": "Week 12",
+      "visitdy": 85,
+      "complete": true
+    }
+  ]
+}

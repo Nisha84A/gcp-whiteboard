@@ -1,0 +1,147 @@
+{
+  "agents": [
+    {
+      "id": "discrepancy-triage",
+      "name": "Discrepancy Triage Agent",
+      "icon": "zap",
+      "status": "RUNNING",
+      "statusColor": "green",
+      "description": "Processed **latest data load**. Found **3 anomalies** across 2 subjects — categorized and ready for review.",
+      "badges": [{ "label": "3 findings", "color": "amber" }],
+      "action": { "label": "Review Findings →", "trigger": "show-anomalies" }
+    },
+    {
+      "id": "query-resolution",
+      "name": "Query Resolution Agent",
+      "icon": "file-edit",
+      "status": "AWAITING APPROVAL",
+      "statusColor": "amber",
+      "description": "Drafted query text for **2 discrepancy classes**. Awaiting reviewer approval before EDC submission.",
+      "badges": [{ "label": "2 pending", "color": "amber" }],
+      "action": { "label": "Review Drafts →", "trigger": "review-drafts" }
+    },
+    {
+      "id": "data-quality",
+      "name": "Data Quality Monitor",
+      "icon": "bar-chart",
+      "status": "ACTIVE",
+      "statusColor": "green",
+      "description": "Study health: **94.2%**. Site 02 data completeness at 89% — below 95% threshold. Alert sent.",
+      "badges": [{ "label": "1 threshold breach", "color": "red" }],
+      "action": { "label": "View Report →", "trigger": "view-report" }
+    },
+    {
+      "id": "milestone-readiness",
+      "name": "Milestone Readiness Agent",
+      "icon": "target",
+      "status": "WARNING",
+      "statusColor": "amber",
+      "description": "DB Lock in **12 days**. **8 open discrepancies** remain (target: 0). Site 02 completeness gap is a risk.",
+      "badges": [{ "label": "AMBER", "color": "amber" }],
+      "action": { "label": "Full Assessment →", "trigger": "milestone-status" }
+    },
+    {
+      "id": "cross-study-signal",
+      "name": "Cross-Study Signal Agent",
+      "icon": "search",
+      "status": "IDLE",
+      "statusColor": "slate",
+      "description": "No cross-study safety signals detected in the past **7 days** across active therapeutic area studies.",
+      "badges": [{ "label": "No signals", "color": "slate" }],
+      "action": { "label": "View History →", "trigger": null }
+    }
+  ],
+  "studyOverview": {
+    "studyId": "ABC-2024-001",
+    "date": "NOV 16, 2024",
+    "stats": [
+      { "value": "8", "label": "ACTIVE SUBJECTS", "detail": "6 on-study · 2 discontinued" },
+      { "value": "3", "label": "OPEN DISCREPANCIES", "detail": "2 CRITICAL · 1 HIGH", "color": "red" },
+      { "value": "94.2%", "label": "DATA COMPLETENESS", "progress": 94.2 },
+      { "value": "12", "label": "DAYS TO DB LOCK", "detail": "Dec 15, 2024 · AMBER risk", "color": "amber" }
+    ]
+  },
+  "findings": [
+    { "subjid": "SUBJ-002", "domain": "LB", "severity": "HIGH", "description": "ALT 72 U/L (1.8× ULN) at Day 30. Potential drug-induced hepatotoxicity signal.", "confidence": 94, "status": "Pending review" },
+    { "subjid": "SUBJ-007", "domain": "LB", "severity": "CRITICAL", "description": "ALT 115 U/L + AST 105 U/L at Day 45. Subject deceased. Hy's Law criteria may be met.", "confidence": 98, "status": "Pending review" },
+    { "subjid": "SUBJ-003", "domain": "AE", "severity": "CRITICAL", "description": "SEVERE Headache (Day 7–21) + SEVERE Vomiting (Day 9–15), both RELATED to drug. Led to discontinuation Day 32.", "confidence": 91, "status": "Pending review" }
+  ],
+  "auditTrail": [
+    { "time": "08:14", "text": "**Discrepancy Triage Agent** completed data load analysis" },
+    { "time": "08:12", "text": "**Data Quality Monitor** sent threshold alert for Site 02" },
+    { "time": "08:10", "text": "**Milestone Readiness Agent** generated readiness assessment" },
+    { "time": "07:55", "text": "**Cross-Study Signal Agent** completed daily sweep — no signals" },
+    { "time": "07:30", "text": "Study data loaded from EDC · 3 new records" }
+  ],
+  "chatScript": {
+    "initial": {
+      "messages": [
+        { "role": "ai", "content": "Good morning, Dr. Reyes. I've completed your **pre-review briefing** for Study **ABC-2024-001**.\n\nSince your last session on **Nov 14**, I've detected **3 new data updates**. The **Discrepancy Triage Agent** has pre-processed them and found **3 anomalies** — 2 CRITICAL, 1 HIGH — awaiting your review.\n\nThe **Query Resolution Agent** has drafted query text and is ready for your approval. How would you like to proceed?" }
+      ],
+      "prompts": ["What changed since my last review?", "Show me the anomalies", "What is our milestone status?"]
+    },
+    "show-anomalies": {
+      "messages": [
+        { "role": "user", "content": "Show me the anomalies in the new data." },
+        { "role": "ai", "type": "findings", "content": "ML anomaly detection (Module 6) has flagged **3 findings** with high confidence:" }
+      ],
+      "prompts": ["Raise discrepancies on all flagged items", "Write a narrative for SUBJ-003", "What is our milestone status?"],
+      "showFindings": true,
+      "auditUpdate": { "time": "06:40 PM", "text": "**AI Concierge** surfaced 3 ML anomaly findings" }
+    },
+    "what-changed": {
+      "messages": [
+        { "role": "user", "content": "What changed since my last review?" },
+        { "role": "ai", "type": "table", "content": "Since your last review on **Nov 14, 2024**, I've identified **3 data updates** across 2 subjects:", "table": [
+          { "subject": "SUBJ-002", "domain": "LB", "change": "ALT result updated — Day 30" },
+          { "subject": "SUBJ-007", "domain": "AE", "change": "New AE added — Nausea, MODERATE" },
+          { "subject": "SUBJ-003", "domain": "AE", "change": "AE onset date corrected — Vomiting" }
+        ], "footer": "The **Discrepancy Triage Agent** has pre-processed all 3. **2 require your immediate attention.**" }
+      ],
+      "prompts": ["Show me the anomalies", "What is our milestone status?", "Write a narrative for SUBJ-003"]
+    },
+    "milestone-status": {
+      "messages": [
+        { "role": "user", "content": "What is our milestone readiness status?" },
+        { "role": "ai", "type": "assessment", "content": "Milestone Readiness Assessment — Database Lock", "assessment": {
+          "status": "AMBER",
+          "target": "Dec 15, 2024 · 12 days remaining",
+          "risks": [
+            { "level": "HIGH", "title": "Open Discrepancies", "detail": "8 open discrepancies remain. Target at lock: 0. At current resolution rate (2/day), 4 discrepancies will remain unresolved at lock date." },
+            { "level": "MEDIUM", "title": "Site 02 Completeness", "detail": "Site 02 data completeness at 89% (threshold: 95%). 3 outstanding visits. Site data manager notified on Nov 15." }
+          ],
+          "onTrack": ["Visit completion rate: 91% (6 of 8 subjects complete)", "No SAE reporting gaps detected"],
+          "recommendation": "Recommended: escalate Site 02 by Nov 18; prioritize CRITICAL discrepancy resolution this week."
+        }}
+      ],
+      "prompts": ["Write a narrative for SUBJ-003", "Show me the anomalies", "Raise discrepancies on all flagged items"]
+    },
+    "write-narrative": {
+      "messages": [
+        { "role": "user", "content": "Write a patient narrative for SUBJ-003." },
+        { "role": "ai", "type": "loading", "content": "Generating patient narrative for **SUBJ-003**..." },
+        { "role": "ai", "type": "narrative", "content": "Patient Narrative Draft — SUBJ-003", "narrative": "PATIENT NARRATIVE — SUBJ-003\nFemale, age 38, enrolled in Study ABC-2024-001 (Treatment A arm) at Site 02 on Day –14. Subject had a prior history of depression (ongoing, Sertraline) and resolved migraine.\n\nOn Day 7, the subject reported onset of SEVERE headache, assessed by the investigator as RELATED to the study drug. Concurrent SEVERE vomiting was reported on Day 9. Both events persisted through Days 21 and 15 respectively.", "actions": ["Approve & Save", "Revise", "Discard"] }
+      ],
+      "prompts": ["What is our milestone status?", "Raise discrepancies on all flagged items"]
+    },
+    "review-drafts": {
+      "messages": [
+        { "role": "user", "content": "Show me the drafted queries for approval." },
+        { "role": "ai", "type": "drafts", "content": "The **Query Resolution Agent** has drafted **2 queries** based on the flagged anomalies. These are ready for your review before submission to EDC:", "drafts": [
+          { "id": "DQ-001", "subjid": "SUBJ-002", "domain": "LB", "severity": "HIGH", "title": "ALT Elevation — Hepatotoxicity Assessment Required", "text": "ALT value of 72 U/L (1.8× ULN) recorded at Day 30. Please confirm lab result accuracy and provide hepatotoxicity assessment. Has the subject shown any clinical symptoms of liver injury?", "target": "Site Investigator" },
+          { "id": "DQ-002", "subjid": "SUBJ-007", "domain": "LB", "severity": "CRITICAL", "title": "Hy's Law Criteria — Causality Review", "text": "ALT 115 U/L + AST 105 U/L at Day 45 (final observation). Subject deceased (Disease Progression). Please provide Hy's Law assessment and confirm causality determination.", "target": "Medical Monitor" }
+        ] }
+      ],
+      "prompts": ["Approve and submit all drafts", "Write a narrative for SUBJ-003", "What is our milestone status?"],
+      "auditUpdate": { "time": "06:45 PM", "text": "**Query Resolution Agent** drafts reviewed by Dr. Reyes" }
+    },
+    "approve-narrative": {
+      "messages": [
+        { "role": "user", "content": "✓ Approved. Save narrative to SUBJ-003 record." },
+        { "role": "ai", "content": "✓ **Narrative saved and attached to SUBJ-003's record.**\n\nIt is now accessible from the subject's Patient Profile and will be included in the next data extract. Audit trail updated." }
+      ],
+      "prompts": ["What is our milestone status?", "What changed since my last review?", "Show me the anomalies"],
+      "auditUpdate": { "time": "06:47 PM", "text": "**AI Concierge** saved patient narrative for SUBJ-003" }
+    }
+  }
+}

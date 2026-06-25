@@ -1,0 +1,6 @@
+[
+  { "id": "ABC-2024-001", "name": "Efficacy & Safety of Drug ABC/XYZ in T2D", "phase": "Phase 3", "design": "Randomized, Double-Blind", "subjects": 8, "status": "Active Review" },
+  { "id": "XYZ-2023-005", "name": "Cardiovascular Outcomes with Drug XYZ", "phase": "Phase 2", "design": "Open-Label, Multi-Center", "subjects": 12, "status": "Enrollment Complete" },
+  { "id": "DEF-2025-003", "name": "Oncology Immunotherapy Combination Trial", "phase": "Phase 1b/2", "design": "Dose-Escalation, Open-Label", "subjects": 6, "status": "Dose Escalation" },
+  { "id": "GHI-2024-002", "name": "CNS Neuroprotection in Early Alzheimer's", "phase": "Phase 2", "design": "Double-Blind, Placebo-Controlled", "subjects": 10, "status": "Active Review" }
+]
