@@ -17,7 +17,7 @@ interface StudyState {
 
 const initialState: StudyState = {
   studies: [],
-  activeStudyId: 'ABC-2024-001',
+  activeStudyId: '',
   isLoading: false,
 };
 

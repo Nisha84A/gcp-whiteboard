@@ -36,7 +36,9 @@ export default function Dashboard() {
   const activeStudyId = useAppSelector((state) => state.study.activeStudyId);
 
   useEffect(() => {
-    dispatch(loadData(activeStudyId));
+    if (activeStudyId) {
+      dispatch(loadData(activeStudyId));
+    }
     fetch('/queries.json').then((r) => r.json()).then(setQueries);
   }, [dispatch, activeStudyId]);
 

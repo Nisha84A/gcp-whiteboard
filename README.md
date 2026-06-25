@@ -9,7 +9,7 @@ Clinical Trial Data Review Platform — a drag-and-drop whiteboard for reviewing
 - **Study Selector** — switch between multiple clinical studies with isolated data per study
 - **Whiteboard Module** — drag-and-drop canvas with data tables, charts, and resizable cards
 - **AI Agents Module** — scripted agent orchestration demo for automated safety signal detection
-- **Concierge Module** — natural-language AI interface for study data (coming soon)
+- **Concierge Module** — natural-language AI chatbot for querying study data with multi-format responses (tables, anomaly findings, patient narratives with lab charts, action buttons)
 - **Query Management** — raise, track, and resolve data queries with priority/status workflow
 - **Global Page Filters** — filter by Subject ID, Treatment Arm, Site, Sex, Severity, etc. across all views
 - **Clickable Subject IDs** — click any subject ID in charts/tables to filter or open patient profile
@@ -86,12 +86,30 @@ AI-powered agent orchestration for automated clinical data review.
 
 ### 3. Concierge Module (`src/modules/concierge/`)
 
-Natural-language AI interface for querying study data (placeholder — under development).
+Natural-language AI chatbot interface for querying clinical study data with rich, multi-format responses.
 
-**Planned features:**
-- Conversational data queries
-- Safety signal surfacing
-- Workflow triggering via natural language
+**Features:**
+- Study Context sidebar (study info, subject count, DB lock countdown, capability list)
+- Conversational chat interface with typing indicators and timestamped messages
+- Free-text input + suggestion button prompts
+- Multiple response formats:
+  - **Anomaly findings** — grouped by severity (CRITICAL/HIGH/NOTABLE) with color-coded indicators
+  - **AE tables** — full adverse event listing with severity and relatedness badges
+  - **Data changes** — tabular diff showing what changed since last review
+  - **Patient narratives** — structured cards with demographics, lab trend charts (Recharts), alert banners, DRAFT status
+  - **Query confirmations** — EDC sync status with checkmarks and audit trail
+  - **Study status** — overview stats with milestone readiness assessment
+- Clickable subject IDs and action buttons that trigger follow-up queries
+- Scripted demo flows driven by `concierge-script.json`
+
+**Components:**
+| Component | Description |
+|-----------|-------------|
+| ConciergePage | Main page with sidebar + chat + input |
+| ChatMessage | Renders messages by type (findings, tables, narratives, etc.) |
+| StudyContextSidebar | Left panel with study metadata and capabilities |
+| NarrativeCard | Patient narrative card with demographics + lab chart |
+| LabTrendMini | Small Recharts line chart for ALT trends with ULN reference |
 
 ---
 
@@ -103,7 +121,7 @@ Natural-language AI interface for querying study data (placeholder — under dev
 |-------|---------|
 | `authSlice` | User authentication state (login, logout, token, session restore) |
 | `themeSlice` | Dark/light mode preference (persisted) |
-| `studySlice` | Study selector — list studies, active study (persisted) |
+| `studySlice` | Study selector — list studies, active study (persisted, defaults to "Select Study" until chosen) |
 | `dataSlice` | Clinical data loading from JSON (subjects, AEs, labs, exposure, etc.) |
 | `filterSlice` | Global page filter selections (Subject ID, Arm, Site, Sex, Severity) |
 
@@ -112,7 +130,7 @@ Natural-language AI interface for querying study data (placeholder — under dev
 | Component | Description |
 |-----------|-------------|
 | Header | Top bar with logo, user info, study selector, theme toggle |
-| StudySelector | Dropdown to switch between studies with data reload |
+| StudySelector | Dropdown to switch between studies — shows "Select Study" by default, persists selection across app |
 | StatsBar | Real-time stats display (subjects, sites, AEs, queries) |
 | NotificationPanel | Slide-out notification list with event types |
 | DemoCard | Module cards for the Demo Hub landing page |
@@ -149,6 +167,7 @@ Study data is served from `public/` as static JSON files:
 | `notifications.json` | — | Study event notifications |
 | `demo-hub.json` | — | Demo Hub page content |
 | `agents-script.json` | — | Agent orchestration script |
+| `concierge-script.json` | — | Concierge chatbot conversation flows |
 | `review-status.json` | — | Review workflow status |
 | `studies/index.json` | — | Study registry (multi-study support) |
 | `studies/*.json` | — | Per-study configuration and metadata |
@@ -271,6 +290,7 @@ gcp-whiteboard/
 │   ├── notifications.json             # Study notifications
 │   ├── demo-hub.json                  # Demo Hub content
 │   ├── agents-script.json             # Agent orchestration script
+│   ├── concierge-script.json          # Concierge chatbot flows
 │   └── review-status.json             # Review workflow status
 ├── src/                               # React frontend
 │   ├── App.tsx                        # Router + Theme + DnD providers
@@ -317,9 +337,14 @@ gcp-whiteboard/
 │   │   │   └── components/
 │   │   │       ├── AgentCard.tsx
 │   │   │       └── ConciergeChat.tsx
-│   │   └── concierge/                 # Concierge Module (placeholder)
-│   │       └── pages/
-│   │           └── ConciergePage.tsx
+│   │   └── concierge/                 # Concierge Module
+│   │       ├── pages/
+│   │       │   └── ConciergePage.tsx   # Main chat interface
+│   │       └── components/
+│   │           ├── ChatMessage.tsx     # Multi-format message renderer
+│   │           ├── StudyContextSidebar.tsx
+│   │           ├── NarrativeCard.tsx   # Patient narrative card
+│   │           └── LabTrendMini.tsx    # Mini lab trend chart
 │   └── shared/                        # Shared infrastructure
 │       ├── types.ts                   # TypeScript interfaces
 │       ├── theme.ts                   # MUI dark/light themes

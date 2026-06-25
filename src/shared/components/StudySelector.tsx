@@ -41,10 +41,16 @@ export default function StudySelector() {
         className="flex items-center gap-2 px-2 py-1 rounded hover:bg-navy-800 transition-colors"
       >
         <div className="text-left">
-          <div className="text-sm font-bold text-white leading-tight">{activeStudyId}</div>
-          <div className="text-[10px] text-slate-400 leading-tight max-w-[280px] truncate">
-            {activeStudy?.name || 'Loading...'} · {activeStudy?.phase}
-          </div>
+          {activeStudyId ? (
+            <>
+              <div className="text-sm font-bold text-white leading-tight">{activeStudyId}</div>
+              <div className="text-[10px] text-slate-400 leading-tight max-w-[280px] truncate">
+                {activeStudy?.name || 'Loading...'} · {activeStudy?.phase}
+              </div>
+            </>
+          ) : (
+            <div className="text-sm text-slate-400 leading-tight">Select Study</div>
+          )}
         </div>
         <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>

@@ -1,0 +1,479 @@
+{
+  "study": {
+    "id": "ABC-2024-001",
+    "title": "Efficacy & Safety of Drug ABC/XYZ in T2D",
+    "phase": "Phase 3",
+    "status": "Active Review",
+    "subjects": 8,
+    "arms": 3,
+    "sites": 2,
+    "dbLockDate": "2026-06-30",
+    "dbLockDays": 25
+  },
+  "capabilities": [
+    { "label": "Subject data", "detail": "AEs, labs, visits, medications, medical history" },
+    { "label": "Anomaly detection", "detail": "flags, discrepancies, elevated values" },
+    { "label": "Study status", "detail": "enrollment, milestone readiness, data quality" },
+    { "label": "Data changes", "detail": "what's new or updated since your last review" },
+    { "label": "Patient narratives", "detail": "draft and review" },
+    { "label": "Cross-domain patterns", "detail": "across AE, labs, demographics" }
+  ],
+  "chatScript": {
+    "initial": {
+      "messages": [
+        {
+          "role": "ai",
+          "type": "welcome",
+          "content": "Good morning, Dr. Reyes. I'm ready to answer questions about **Study ABC-2024-001**.\n\nI have access to all study domains — AEs, labs, concomitant medications, medical history, visits, and exposure data for **8 subjects**. I can also surface anomalies, summarize data changes since your last review, and draft patient narratives.",
+          "hint": "Try asking: \"Show me all anomalies\" or \"What changed since my last review?\"",
+          "time": "07:08 PM"
+        }
+      ],
+      "prompts": ["Show me all anomalies", "What changed since my last review?", "AE data", "Study status overview"]
+    },
+    "show-anomalies": {
+      "messages": [
+        { "role": "user", "content": "Show me all anomalies", "time": "07:09 PM" },
+        {
+          "role": "ai",
+          "type": "findings",
+          "content": "Anomaly detection results — **7** flags identified:",
+          "time": "07:09 PM",
+          "findings": {
+            "critical": {
+              "label": "CRITICAL — Lab values (Hy's Law risk)",
+              "items": [
+                { "subjid": "SUBJ-003", "text": "ALT **92 U/L** (2.3×ULN) at Day 15", "clickable": true },
+                { "subjid": "SUBJ-003", "text": "ALT **128 U/L** (3.2×ULN) at Day 30", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "ALT **98 U/L** (2.5×ULN) at Day 30", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "ALT **115 U/L** (2.9×ULN) at Day 45", "clickable": true }
+              ]
+            },
+            "high": {
+              "label": "HIGH — Severe related adverse events",
+              "items": [
+                { "subjid": "SUBJ-003", "text": "**Headache** — SEVERE, RELATED (D7–21)", "clickable": true },
+                { "subjid": "SUBJ-003", "text": "**Vomiting** — SEVERE, RELATED (D9–16)", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "**Fatigue** — SEVERE, RELATED (D12–32)", "clickable": true }
+              ]
+            },
+            "notable": {
+              "label": "NOTABLE — Deceased subjects",
+              "items": [
+                { "subjid": "SUBJ-003", "text": "Treatment-Related AE on Day 32", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "Disease Progression on Day 45", "clickable": true }
+              ]
+            }
+          },
+          "footer": "AI confidence range: 91–98%. All flags require medical reviewer sign-off before action is taken.",
+          "actionButtons": [
+            { "label": "CRITICAL subjects (2)", "icon": "file-text", "color": "cyan", "trigger": "generate-narratives-critical" },
+            { "label": "HIGH severity subjects (2)", "icon": "file-text", "color": "teal", "trigger": "generate-narratives-high" },
+            { "label": "All flagged subjects (2)", "icon": "file-text", "color": "amber", "trigger": "generate-narratives-all" }
+          ],
+          "actionLabel": "Generate narratives for:"
+        }
+      ],
+      "prompts": ["Generate narratives for all critical subjects", "What changed since my last review?", "Write narrative for SUBJ-003"]
+    },
+    "show-ae-subject": {
+      "messages": [
+        { "role": "user", "content": "Show AEs for SUBJ-003", "time": "07:10 PM" },
+        {
+          "role": "ai",
+          "type": "ae-table",
+          "content": "AE listing for **SUBJ-003** — 2 events",
+          "time": "07:10 PM",
+          "table": [
+            { "subject": "SUBJ-003", "aeTerm": "Headache", "severity": "SEVERE", "relatedness": "RELATED", "days": "D7–D21" },
+            { "subject": "SUBJ-003", "aeTerm": "Vomiting", "severity": "SEVERE", "relatedness": "RELATED", "days": "D9–D16" }
+          ],
+          "footer": "⚠ 2 SEVERE RELATED AEs flagged — **SUBJ-003**. Review recommended.",
+          "footerNote": "Click any row to focus subject in context."
+        }
+      ],
+      "prompts": ["Are there any Hy's Law candidates?", "Generate narratives for all critical subjects", "What changed since my last review?"]
+    },
+    "show-ae-all": {
+      "messages": [
+        { "role": "user", "content": "AE data", "time": "07:10 PM" },
+        {
+          "role": "ai",
+          "type": "ae-table",
+          "content": "AE listing — **19** events across **8** subjects",
+          "time": "07:10 PM",
+          "table": [
+            { "subject": "SUBJ-001", "aeTerm": "Headache", "severity": "MILD", "relatedness": "RELATED", "days": "D5–D12" },
+            { "subject": "SUBJ-001", "aeTerm": "Nausea", "severity": "MILD", "relatedness": "RELATED", "days": "D8–D15" },
+            { "subject": "SUBJ-001", "aeTerm": "Fatigue", "severity": "MODERATE", "relatedness": "POSSIBLE", "days": "D20–D38" },
+            { "subject": "SUBJ-002", "aeTerm": "Dizziness", "severity": "MILD", "relatedness": "RELATED", "days": "D3–D8" },
+            { "subject": "SUBJ-002", "aeTerm": "Rash", "severity": "MODERATE", "relatedness": "RELATED", "days": "D14–D29" },
+            { "subject": "SUBJ-002", "aeTerm": "Insomnia", "severity": "MILD", "relatedness": "POSSIBLE", "days": "D22–D55" },
+            { "subject": "SUBJ-003", "aeTerm": "Headache", "severity": "SEVERE", "relatedness": "RELATED", "days": "D7–D21" },
+            { "subject": "SUBJ-003", "aeTerm": "Vomiting", "severity": "SEVERE", "relatedness": "RELATED", "days": "D9–D16" },
+            { "subject": "SUBJ-004", "aeTerm": "Fatigue", "severity": "MILD", "relatedness": "UNLIKELY", "days": "D30–D48" },
+            { "subject": "SUBJ-004", "aeTerm": "Headache", "severity": "MILD", "relatedness": "UNLIKELY", "days": "D45–D55" },
+            { "subject": "SUBJ-005", "aeTerm": "Nausea", "severity": "MODERATE", "relatedness": "RELATED", "days": "D6–D18" },
+            { "subject": "SUBJ-005", "aeTerm": "Dizziness", "severity": "MILD", "relatedness": "POSSIBLE", "days": "D10–D22" },
+            { "subject": "SUBJ-006", "aeTerm": "Rash", "severity": "MILD", "relatedness": "RELATED", "days": "D15–D26" },
+            { "subject": "SUBJ-006", "aeTerm": "Headache", "severity": "MILD", "relatedness": "POSSIBLE", "days": "D2–D9" },
+            { "subject": "SUBJ-007", "aeTerm": "Headache", "severity": "MODERATE", "relatedness": "RELATED", "days": "D4–D12" },
+            { "subject": "SUBJ-007", "aeTerm": "Fatigue", "severity": "SEVERE", "relatedness": "RELATED", "days": "D12–D32" },
+            { "subject": "SUBJ-007", "aeTerm": "Nausea", "severity": "MODERATE", "relatedness": "RELATED", "days": "D15–D28" },
+            { "subject": "SUBJ-008", "aeTerm": "Nausea", "severity": "MILD", "relatedness": "POSSIBLE", "days": "D8–D15" },
+            { "subject": "SUBJ-008", "aeTerm": "Dizziness", "severity": "MODERATE", "relatedness": "RELATED", "days": "D18–D36" }
+          ],
+          "footer": "⚠ 3 SEVERE RELATED AEs flagged — **SUBJ-003**, **SUBJ-007**. Review recommended.",
+          "footerNote": "Click any row to focus subject in context."
+        }
+      ],
+      "prompts": ["Show AEs for SUBJ-003", "Are there any Hy's Law candidates?", "Generate narratives for all critical subjects"]
+    },
+    "hys-law": {
+      "messages": [
+        { "role": "user", "content": "Are there any Hy's Law candidates?", "time": "07:10 PM" },
+        {
+          "role": "ai",
+          "type": "findings",
+          "content": "Anomaly detection results — **7** flags identified:",
+          "time": "07:10 PM",
+          "findings": {
+            "critical": {
+              "label": "CRITICAL — Lab values (Hy's Law risk)",
+              "items": [
+                { "subjid": "SUBJ-003", "text": "ALT **92 U/L** (2.3×ULN) at Day 15", "clickable": true },
+                { "subjid": "SUBJ-003", "text": "ALT **128 U/L** (3.2×ULN) at Day 30", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "ALT **98 U/L** (2.5×ULN) at Day 30", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "ALT **115 U/L** (2.9×ULN) at Day 45", "clickable": true }
+              ]
+            },
+            "high": {
+              "label": "HIGH — Severe related adverse events",
+              "items": [
+                { "subjid": "SUBJ-003", "text": "**Headache** — SEVERE, RELATED (D7–21)", "clickable": true },
+                { "subjid": "SUBJ-003", "text": "**Vomiting** — SEVERE, RELATED (D9–16)", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "**Fatigue** — SEVERE, RELATED (D12–32)", "clickable": true }
+              ]
+            },
+            "notable": {
+              "label": "NOTABLE — Deceased subjects",
+              "items": [
+                { "subjid": "SUBJ-003", "text": "Treatment-Related AE on Day 32", "clickable": true },
+                { "subjid": "SUBJ-007", "text": "Disease Progression on Day 45", "clickable": true }
+              ]
+            }
+          },
+          "footer": "AI confidence range: 91–98%. All flags require medical reviewer sign-off before action is taken.",
+          "actionButtons": [
+            { "label": "CRITICAL subjects (2)", "icon": "file-text", "color": "cyan", "trigger": "generate-narratives-critical" },
+            { "label": "HIGH severity subjects (2)", "icon": "file-text", "color": "teal", "trigger": "generate-narratives-high" },
+            { "label": "All flagged subjects (2)", "icon": "file-text", "color": "amber", "trigger": "generate-narratives-all" }
+          ],
+          "actionLabel": "Generate narratives for:"
+        }
+      ],
+      "prompts": ["Generate narratives for all critical subjects", "Show AEs for SUBJ-003", "What changed since my last review?"]
+    },
+    "what-changed": {
+      "messages": [
+        { "role": "user", "content": "What changed since my last review?", "time": "07:24 PM" },
+        {
+          "role": "ai",
+          "type": "data-changes",
+          "content": "Data changes since last review on **May 30, 2026**:",
+          "time": "07:24 PM",
+          "table": [
+            { "subject": "SUBJ-002", "domain": "LB", "change": "ALT Day 30 result loaded — **72 U/L (1.8×ULN)**", "date": "Jun 2" },
+            { "subject": "SUBJ-007", "domain": "AE", "change": "New AE: Nausea (MODERATE) added Day 15–28", "date": "Jun 1" },
+            { "subject": "SUBJ-003", "domain": "AE", "change": "Vomiting onset date corrected (Day 8 → Day 9)", "date": "May 31" },
+            { "subject": "SUBJ-004", "domain": "AE", "change": "New AE: Headache (MILD) added Day 45–55", "date": "Jun 3" }
+          ],
+          "footer": "The Discrepancy Triage Agent has pre-processed all changes. **2 require your attention.**"
+        }
+      ],
+      "prompts": ["Show me all anomalies", "Are there any Hy's Law candidates?", "Study status overview"]
+    },
+    "generate-narratives-critical": {
+      "messages": [
+        { "role": "user", "content": "Generate narratives for all critical subjects", "time": "07:09 PM" },
+        {
+          "role": "ai",
+          "type": "narratives",
+          "content": "2 narratives generated — **CRITICAL** subjects:",
+          "time": "07:09 PM",
+          "narratives": [
+            {
+              "subjid": "SUBJ-003",
+              "title": "SEVERE AE: Headache",
+              "studyInfo": "ABC-2024-001 · Phase III",
+              "demographics": {
+                "subjectId": "SUBJ-003",
+                "age": "38 yr / Female",
+                "arm": "Treatment A",
+                "site": "Site 02",
+                "vitalStatus": "DECEASED D32"
+              },
+              "exposure": {
+                "enrolled": "Day -14",
+                "treatment": "50 mg QD",
+                "aesReported": "2 events",
+                "status": "Discontinued"
+              },
+              "narrative": "SUBJ-003 is a 38-year-old female enrolled in Study ABC-2024-001 (Treatment A, 50 mg QD) at Site 02 on Day -14.\n\nAdverse events (2): Headache (severe, related, Day 7–21); Vomiting (severe, related, Day 9–16).\n\nALT values: 45 U/L (Day 1), 92 U/L (Day 15), 128 U/L (Day 30). Peak 128 U/L (3.2×ULN) — requires review.\n\nConcomitant medications: Acetaminophen, Sertraline.\n\nSubject deceased Day 32 (Treatment-Related AE).",
+              "labTrend": {
+                "title": "LAB TREND — ALT (U/L) · ULN: 40 U/L",
+                "data": [
+                  { "day": "D1", "value": 45 },
+                  { "day": "D15", "value": 92 },
+                  { "day": "D30", "value": 128 }
+                ],
+                "uln": 40
+              },
+              "alert": "DECEASED — Day 32 · Treatment-Related AE",
+              "recommendation": "Medical reviewer to assess, confirm, and complete required documentation.",
+              "reportingBadge": "AE REPORTING REQUIRED",
+              "generated": "2026-06-05 · DM Concierge"
+            },
+            {
+              "subjid": "SUBJ-007",
+              "title": "SEVERE AE: Fatigue",
+              "studyInfo": "ABC-2024-001 · Phase III",
+              "demographics": {
+                "subjectId": "SUBJ-007",
+                "age": "43 yr / Female",
+                "arm": "Placebo",
+                "site": "Site 01",
+                "vitalStatus": "DECEASED D45"
+              },
+              "exposure": {
+                "enrolled": "Day -9",
+                "treatment": "Placebo",
+                "aesReported": "3 events",
+                "status": "Discontinued"
+              },
+              "narrative": "SUBJ-007 is a 43-year-old female enrolled in Study ABC-2024-001 (Placebo arm) at Site 01 on Day -9.\n\nAdverse events (3): Headache (moderate, related, Day 4–12); Fatigue (severe, related, Day 12–32); Nausea (moderate, related, Day 15–28).\n\nALT values: 38 U/L (Day 1), 98 U/L (Day 30), 115 U/L (Day 45). Peak 115 U/L (2.9×ULN) — requires review.\n\nConcomitant medications: Ibuprofen.\n\nSubject deceased Day 45 (Disease Progression).",
+              "labTrend": {
+                "title": "LAB TREND — ALT (U/L) · ULN: 40 U/L",
+                "data": [
+                  { "day": "D1", "value": 38 },
+                  { "day": "D30", "value": 98 },
+                  { "day": "D45", "value": 115 }
+                ],
+                "uln": 40
+              },
+              "alert": "DECEASED — Day 45 · Disease Progression",
+              "recommendation": "Medical reviewer to assess, confirm, and complete required documentation.",
+              "reportingBadge": "AE REPORTING REQUIRED",
+              "generated": "2026-06-05 · DM Concierge"
+            }
+          ]
+        }
+      ],
+      "prompts": ["Show AEs for SUBJ-003", "What changed since my last review?", "Raise discrepancies on all flagged items"]
+    },
+    "generate-narratives-high": {
+      "messages": [
+        { "role": "user", "content": "Generate narratives for HIGH severity subjects", "time": "07:10 PM" },
+        {
+          "role": "ai",
+          "type": "narratives",
+          "content": "2 narratives generated — **HIGH severity** subjects:",
+          "time": "07:10 PM",
+          "narratives": [
+            {
+              "subjid": "SUBJ-003",
+              "title": "SEVERE AE: Headache",
+              "studyInfo": "ABC-2024-001 · Phase III",
+              "demographics": {
+                "subjectId": "SUBJ-003",
+                "age": "38 yr / Female",
+                "arm": "Treatment A",
+                "site": "Site 02",
+                "vitalStatus": "DECEASED D32"
+              },
+              "exposure": {
+                "enrolled": "Day -14",
+                "treatment": "50 mg QD",
+                "aesReported": "2 events",
+                "status": "Discontinued"
+              },
+              "narrative": "SUBJ-003 is a 38-year-old female enrolled in Study ABC-2024-001 (Treatment A, 50 mg QD) at Site 02 on Day -14.\n\nAdverse events (2): Headache (severe, related, Day 7–21); Vomiting (severe, related, Day 9–16).\n\nALT values: 45 U/L (Day 1), 92 U/L (Day 15), 128 U/L (Day 30). Peak 128 U/L (3.2×ULN) — requires review.\n\nConcomitant medications: Acetaminophen, Sertraline.\n\nSubject deceased Day 32 (Treatment-Related AE).",
+              "labTrend": {
+                "title": "LAB TREND — ALT (U/L) · ULN: 40 U/L",
+                "data": [
+                  { "day": "D1", "value": 45 },
+                  { "day": "D15", "value": 92 },
+                  { "day": "D30", "value": 128 }
+                ],
+                "uln": 40
+              },
+              "alert": "DECEASED — Day 32 · Treatment-Related AE",
+              "recommendation": "Medical reviewer to assess, confirm, and complete required documentation.",
+              "reportingBadge": "AE REPORTING REQUIRED",
+              "generated": "2026-06-05 · DM Concierge"
+            },
+            {
+              "subjid": "SUBJ-007",
+              "title": "SEVERE AE: Fatigue",
+              "studyInfo": "ABC-2024-001 · Phase III",
+              "demographics": {
+                "subjectId": "SUBJ-007",
+                "age": "43 yr / Female",
+                "arm": "Placebo",
+                "site": "Site 01",
+                "vitalStatus": "DECEASED D45"
+              },
+              "exposure": {
+                "enrolled": "Day -9",
+                "treatment": "Placebo",
+                "aesReported": "3 events",
+                "status": "Discontinued"
+              },
+              "narrative": "SUBJ-007 is a 43-year-old female enrolled in Study ABC-2024-001 (Placebo arm) at Site 01 on Day -9.\n\nAdverse events (3): Headache (moderate, related, Day 4–12); Fatigue (severe, related, Day 12–32); Nausea (moderate, related, Day 15–28).\n\nALT values: 38 U/L (Day 1), 98 U/L (Day 30), 115 U/L (Day 45). Peak 115 U/L (2.9×ULN) — requires review.\n\nConcomitant medications: Ibuprofen.\n\nSubject deceased Day 45 (Disease Progression).",
+              "labTrend": {
+                "title": "LAB TREND — ALT (U/L) · ULN: 40 U/L",
+                "data": [
+                  { "day": "D1", "value": 38 },
+                  { "day": "D30", "value": 98 },
+                  { "day": "D45", "value": 115 }
+                ],
+                "uln": 40
+              },
+              "alert": "DECEASED — Day 45 · Disease Progression",
+              "recommendation": "Medical reviewer to assess, confirm, and complete required documentation.",
+              "reportingBadge": "AE REPORTING REQUIRED",
+              "generated": "2026-06-05 · DM Concierge"
+            }
+          ]
+        }
+      ],
+      "prompts": ["Show AEs for SUBJ-003", "What changed since my last review?", "Raise discrepancies on all flagged items"]
+    },
+    "generate-narratives-all": {
+      "messages": [
+        { "role": "user", "content": "Generate narratives for all flagged subjects", "time": "07:10 PM" },
+        {
+          "role": "ai",
+          "type": "narratives",
+          "content": "2 narratives generated — **All flagged** subjects:",
+          "time": "07:10 PM",
+          "narratives": [
+            {
+              "subjid": "SUBJ-003",
+              "title": "SEVERE AE: Headache",
+              "studyInfo": "ABC-2024-001 · Phase III",
+              "demographics": {
+                "subjectId": "SUBJ-003",
+                "age": "38 yr / Female",
+                "arm": "Treatment A",
+                "site": "Site 02",
+                "vitalStatus": "DECEASED D32"
+              },
+              "exposure": {
+                "enrolled": "Day -14",
+                "treatment": "50 mg QD",
+                "aesReported": "2 events",
+                "status": "Discontinued"
+              },
+              "narrative": "SUBJ-003 is a 38-year-old female enrolled in Study ABC-2024-001 (Treatment A, 50 mg QD) at Site 02 on Day -14.\n\nAdverse events (2): Headache (severe, related, Day 7–21); Vomiting (severe, related, Day 9–16).\n\nALT values: 45 U/L (Day 1), 92 U/L (Day 15), 128 U/L (Day 30). Peak 128 U/L (3.2×ULN) — requires review.\n\nConcomitant medications: Acetaminophen, Sertraline.\n\nSubject deceased Day 32 (Treatment-Related AE).",
+              "labTrend": {
+                "title": "LAB TREND — ALT (U/L) · ULN: 40 U/L",
+                "data": [
+                  { "day": "D1", "value": 45 },
+                  { "day": "D15", "value": 92 },
+                  { "day": "D30", "value": 128 }
+                ],
+                "uln": 40
+              },
+              "alert": "DECEASED — Day 32 · Treatment-Related AE",
+              "recommendation": "Medical reviewer to assess, confirm, and complete required documentation.",
+              "reportingBadge": "AE REPORTING REQUIRED",
+              "generated": "2026-06-05 · DM Concierge"
+            },
+            {
+              "subjid": "SUBJ-007",
+              "title": "SEVERE AE: Fatigue",
+              "studyInfo": "ABC-2024-001 · Phase III",
+              "demographics": {
+                "subjectId": "SUBJ-007",
+                "age": "43 yr / Female",
+                "arm": "Placebo",
+                "site": "Site 01",
+                "vitalStatus": "DECEASED D45"
+              },
+              "exposure": {
+                "enrolled": "Day -9",
+                "treatment": "Placebo",
+                "aesReported": "3 events",
+                "status": "Discontinued"
+              },
+              "narrative": "SUBJ-007 is a 43-year-old female enrolled in Study ABC-2024-001 (Placebo arm) at Site 01 on Day -9.\n\nAdverse events (3): Headache (moderate, related, Day 4–12); Fatigue (severe, related, Day 12–32); Nausea (moderate, related, Day 15–28).\n\nALT values: 38 U/L (Day 1), 98 U/L (Day 30), 115 U/L (Day 45). Peak 115 U/L (2.9×ULN) — requires review.\n\nConcomitant medications: Ibuprofen.\n\nSubject deceased Day 45 (Disease Progression).",
+              "labTrend": {
+                "title": "LAB TREND — ALT (U/L) · ULN: 40 U/L",
+                "data": [
+                  { "day": "D1", "value": 38 },
+                  { "day": "D30", "value": 98 },
+                  { "day": "D45", "value": 115 }
+                ],
+                "uln": 40
+              },
+              "alert": "DECEASED — Day 45 · Disease Progression",
+              "recommendation": "Medical reviewer to assess, confirm, and complete required documentation.",
+              "reportingBadge": "AE REPORTING REQUIRED",
+              "generated": "2026-06-05 · DM Concierge"
+            }
+          ]
+        }
+      ],
+      "prompts": ["Show AEs for SUBJ-003", "What changed since my last review?", "Raise discrepancies on all flagged items"]
+    },
+    "raise-discrepancies": {
+      "messages": [
+        { "role": "user", "content": "Raise discrepancies on all flagged items", "time": "03:28 PM" },
+        {
+          "role": "ai",
+          "type": "confirmation",
+          "content": "✓ **3 discrepancies created and synchronized to EDC.**",
+          "time": "03:28 PM",
+          "items": [
+            { "id": "Q001", "target": "SUBJ-002 · LB · ALT", "status": "Sent ✓" },
+            { "id": "Q002", "target": "SUBJ-007 · LB · ALT/AST", "status": "Sent ✓" },
+            { "id": "Q003", "target": "SUBJ-003 · AE · SEVERE Events", "status": "Sent ✓" }
+          ],
+          "statusUpdate": "Review status updated: **SUBJ-002**, **SUBJ-003**, **SUBJ-007** → Queried.",
+          "auditNote": "Audit trail logged. All actions are traceable per 21 CFR Part 11."
+        }
+      ],
+      "prompts": ["What changed since my last review?", "Study status overview", "Show me all anomalies"]
+    },
+    "study-status": {
+      "messages": [
+        { "role": "user", "content": "Study status overview", "time": "07:25 PM" },
+        {
+          "role": "ai",
+          "type": "study-status",
+          "content": "Study ABC-2024-001 — Status Overview",
+          "time": "07:25 PM",
+          "stats": [
+            { "label": "Active Subjects", "value": "8", "detail": "6 on-study · 2 discontinued" },
+            { "label": "Data Completeness", "value": "94.2%", "progress": 94.2 },
+            { "label": "Open Discrepancies", "value": "3", "detail": "2 CRITICAL · 1 HIGH", "color": "red" },
+            { "label": "Days to DB Lock", "value": "25", "detail": "Jun 30, 2026 · AMBER risk", "color": "amber" }
+          ],
+          "milestone": {
+            "status": "AMBER",
+            "risks": [
+              "8 open discrepancies remain (target: 0)",
+              "Site 02 data completeness at 89% (below 95% threshold)"
+            ],
+            "onTrack": [
+              "Visit completion rate: 91%",
+              "No SAE reporting gaps"
+            ]
+          }
+        }
+      ],
+      "prompts": ["Show me all anomalies", "What changed since my last review?", "Are there any Hy's Law candidates?"]
+    }
+  }
+}
