@@ -1,28 +1,170 @@
 # ClinBoard
 
-Clinical Trial Data Review Platform — a drag-and-drop whiteboard for reviewing and visualizing clinical trial data.
+Clinical Trial Data Review Platform — a drag-and-drop whiteboard for reviewing and visualizing clinical trial data with AI-powered agent workflows.
 
 ## What This App Does
 
 - **Login/Register** with user accounts (JWT-based auth)
-- **Dashboard** with a sidebar catalog of clinical data views
-- **Drag and drop** listings (tables) and visualizations (charts) onto a whiteboard canvas
-- **Material React Table** with working column filters (select, range, text) for all clinical domains
-- **Charts** (Recharts) — AE Summary, AE Timeline, Lab Trend
-- **Global Page Filters** — filter by Subject ID, Treatment Arm, Site, Sex, Severity, etc. All whiteboard items update simultaneously
-- **Dark/Light theme** toggle
-- **Resizable and movable cards** on the whiteboard
+- **Demo Hub** — central landing page with live study stats, notifications, and module navigation
+- **Study Selector** — switch between multiple clinical studies with isolated data per study
+- **Whiteboard Module** — drag-and-drop canvas with data tables, charts, and resizable cards
+- **AI Agents Module** — scripted agent orchestration demo for automated safety signal detection
+- **Concierge Module** — natural-language AI interface for study data (coming soon)
+- **Query Management** — raise, track, and resolve data queries with priority/status workflow
+- **Global Page Filters** — filter by Subject ID, Treatment Arm, Site, Sex, Severity, etc. across all views
+- **Clickable Subject IDs** — click any subject ID in charts/tables to filter or open patient profile
+- **Dark/Light theme** toggle with persistence
+- **Notifications** — real-time notification panel for study events
+
+---
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | React 18, TypeScript, Vite, Tailwind CSS |
-| UI Components | Material React Table, MUI, Recharts, Lucide Icons |
-| State Management | Zustand (auth, theme, data, filters) |
-| Drag & Drop | react-dnd |
+| Frontend | React 18, TypeScript, Vite |
+| Styling | Tailwind CSS, MUI (Material UI) v9, Emotion |
+| UI Components | Material React Table v3, Recharts, Lucide Icons |
+| State Management | Redux Toolkit, React-Redux, Redux Persist |
+| Routing | React Router DOM v6 |
+| Drag & Drop | react-dnd (HTML5 backend) |
+| Utilities | date-fns, dayjs, Zod (validation) |
+| HTTP Client | Axios |
 | Backend | Node.js, Express, SQLite (better-sqlite3) |
 | Auth | JWT (jsonwebtoken), bcryptjs |
+| Deployment | Docker (multi-stage), Google Cloud Build |
+
+---
+
+## Modules
+
+The application is organized into a modular architecture under `src/modules/`:
+
+### 1. Whiteboard Module (`src/modules/whiteboard/`)
+
+The core data review workspace — a drag-and-drop canvas for clinical data exploration.
+
+**Features:**
+- Drag items from the sidebar catalog onto a whiteboard canvas
+- Resizable and movable cards with re-resizable
+- Global page filters (Subject ID, Treatment Arm, Site, Sex, Severity)
+- Query panel for raising and managing data queries
+- Query modal for creating new queries from table context
+- Clickable subject IDs across all tables and charts
+
+**Tables** (Material React Table with column filters):
+| Table | Domain | Description |
+|-------|--------|-------------|
+| SubjectTable | DM | Demographics — subject listing with arm, site, sex, age |
+| AETable | AE | Adverse events with severity, causality, outcome |
+| LabTable | LB | Lab results — ALT, AST, Creatinine with reference ranges |
+| ExposureTable | EX | Drug exposure records — dose, route, dates |
+| MedHistoryTable | MH | Medical history conditions |
+| ConmedTable | CM | Concomitant medications |
+| VisitGrid | SV | Visit schedule/compliance grid |
+
+**Charts** (Recharts):
+| Chart | Description |
+|-------|-------------|
+| AESummaryChart | Bar chart — AE count by system organ class |
+| AETimelineChart | Timeline — AE events across study days per subject |
+| LabTrendChart | Line chart — lab parameter trends over visits |
+
+**Panels:**
+- PatientProfile — detailed single-subject view
+
+### 2. Agents Module (`src/modules/agents/`)
+
+AI-powered agent orchestration for automated clinical data review.
+
+**Features:**
+- Agent cards showing orchestrated AI workers (Monitor, Analyst, Checker, etc.)
+- Scripted conversational interface (ConciergeChat)
+- Automated safety signal detection demo
+- Findings panel with audit trail
+- Study overview integration
+
+### 3. Concierge Module (`src/modules/concierge/`)
+
+Natural-language AI interface for querying study data (placeholder — under development).
+
+**Planned features:**
+- Conversational data queries
+- Safety signal surfacing
+- Workflow triggering via natural language
+
+---
+
+## Shared Infrastructure (`src/shared/`)
+
+### Store (Redux Toolkit)
+
+| Slice | Purpose |
+|-------|---------|
+| `authSlice` | User authentication state (login, logout, token, session restore) |
+| `themeSlice` | Dark/light mode preference (persisted) |
+| `studySlice` | Study selector — list studies, active study (persisted) |
+| `dataSlice` | Clinical data loading from JSON (subjects, AEs, labs, exposure, etc.) |
+| `filterSlice` | Global page filter selections (Subject ID, Arm, Site, Sex, Severity) |
+
+### Components
+
+| Component | Description |
+|-----------|-------------|
+| Header | Top bar with logo, user info, study selector, theme toggle |
+| StudySelector | Dropdown to switch between studies with data reload |
+| StatsBar | Real-time stats display (subjects, sites, AEs, queries) |
+| NotificationPanel | Slide-out notification list with event types |
+| DemoCard | Module cards for the Demo Hub landing page |
+| ProtectedRoute | Auth guard — redirects unauthenticated users to login |
+
+### Hooks
+
+| Hook | Description |
+|------|-------------|
+| `useFilteredData` | Applies global page filters to all domain data |
+| `useSyncFilters` | Syncs filter state when study changes |
+
+### Services
+
+- `client.ts` — Axios instance with auth token interceptor
+- `authApi.ts` — Login, register, verify API calls
+
+---
+
+## Clinical Data (Static JSON)
+
+Study data is served from `public/` as static JSON files:
+
+| File | Domain | Description |
+|------|--------|-------------|
+| `subjects.json` | DM | 8 subjects across 3 treatment arms |
+| `ae.json` | AE | Adverse events |
+| `labs.json` | LB | Lab test results (ALT, AST, Creatinine) |
+| `ex.json` | EX | Drug exposure records |
+| `mh.json` | MH | Medical history |
+| `cm.json` | CM | Concomitant medications |
+| `visits.json` | SV | Visit schedule |
+| `queries.json` | — | Data queries (raised/resolved) |
+| `notifications.json` | — | Study event notifications |
+| `demo-hub.json` | — | Demo Hub page content |
+| `agents-script.json` | — | Agent orchestration script |
+| `review-status.json` | — | Review workflow status |
+| `studies/index.json` | — | Study registry (multi-study support) |
+| `studies/*.json` | — | Per-study configuration and metadata |
+
+---
+
+## Pages & Routes
+
+| Route | Page | Access |
+|-------|------|--------|
+| `/login` | Login | Public |
+| `/register` | Register | Public |
+| `/` | Demo Hub | Protected |
+| `/whiteboard` | Whiteboard | Protected |
+| `/agents` | AI Agents | Protected |
+| `/concierge` | Concierge | Protected |
 
 ---
 
@@ -105,68 +247,119 @@ Or register a new account.
 
 ```
 gcp-whiteboard/
-├── backend/                  # Node.js API server
+├── backend/                           # Node.js API server
 │   ├── src/
-│   │   ├── server.ts        # Express entry point (port 3001)
-│   │   ├── db.ts            # SQLite database setup + seed
+│   │   ├── server.ts                  # Express entry point (port 3001)
+│   │   ├── db.ts                      # SQLite database setup + seed
 │   │   ├── middleware/
-│   │   │   └── auth.ts      # JWT verification middleware
+│   │   │   └── auth.ts                # JWT verification middleware
 │   │   └── routes/
-│   │       └── auth.ts      # Login, Register, Me endpoints
+│   │       └── auth.ts                # Login, Register, Me endpoints
 │   └── package.json
-├── public/                   # Static clinical data (JSON files)
-│   ├── subjects.json         # 8 subjects across 3 treatment arms
-│   ├── labs.json             # Lab test results (ALT, AST, Creatinine)
-│   ├── ae.json              # Adverse events
-│   ├── ex.json              # Drug exposure records
-│   ├── mh.json             # Medical history
-│   ├── cm.json             # Concomitant medications
-│   └── visits.json          # Visit schedule
-├── src/                      # React frontend
-│   ├── App.tsx              # Router + Theme + DnD providers
-│   ├── main.tsx             # Entry point
-│   ├── theme.ts             # MUI dark/light themes
-│   ├── types.ts             # All TypeScript interfaces
+├── public/                            # Static clinical data (JSON files)
+│   ├── studies/                       # Multi-study data directory
+│   │   ├── index.json                 # Study registry
+│   │   └── *.json                     # Per-study config
+│   ├── subjects.json                  # Demographics
+│   ├── ae.json                        # Adverse events
+│   ├── labs.json                      # Lab results
+│   ├── ex.json                        # Drug exposure
+│   ├── mh.json                        # Medical history
+│   ├── cm.json                        # Concomitant medications
+│   ├── visits.json                    # Visit schedule
+│   ├── queries.json                   # Data queries
+│   ├── notifications.json             # Study notifications
+│   ├── demo-hub.json                  # Demo Hub content
+│   ├── agents-script.json             # Agent orchestration script
+│   └── review-status.json             # Review workflow status
+├── src/                               # React frontend
+│   ├── App.tsx                        # Router + Theme + DnD providers
+│   ├── main.tsx                       # Entry point
 │   ├── pages/
-│   │   ├── Login.tsx        # Login form
-│   │   ├── Register.tsx     # Registration form
-│   │   └── Dashboard.tsx    # Main app page
-│   ├── components/
-│   │   ├── Header.tsx       # Top bar (logo, user info, theme toggle)
-│   │   ├── PageFilters.tsx  # Global filter bar (Subject, Arm, Site, etc.)
-│   │   ├── Navigation.tsx   # Left sidebar catalog
-│   │   ├── NavItem.tsx      # Draggable catalog item
-│   │   ├── Whiteboard.tsx   # Drop zone canvas
-│   │   ├── WhiteboardItem.tsx # Resizable card on whiteboard
-│   │   ├── Visualization.tsx  # Routes to correct table/chart
-│   │   ├── tables/          # Material React Table components
-│   │   │   ├── SubjectTable.tsx
-│   │   │   ├── LabTable.tsx
-│   │   │   ├── AETable.tsx
-│   │   │   ├── ExposureTable.tsx
-│   │   │   ├── MedHistoryTable.tsx
-│   │   │   └── ConmedTable.tsx
-│   │   └── charts/          # Recharts visualization components
-│   │       ├── AESummaryChart.tsx
-│   │       ├── AETimelineChart.tsx
-│   │       └── LabTrendChart.tsx
-│   ├── stores/              # Zustand state management
-│   │   ├── authStore.ts     # User authentication state
-│   │   ├── dataStore.ts     # Clinical data (fetched from JSON)
-│   │   ├── filterStore.ts   # Global page filter selections
-│   │   └── themeStore.ts    # Dark/light preference
-│   ├── hooks/
-│   │   └── useFilteredData.ts  # Applies page filters to all data
-│   ├── services/api/
-│   │   ├── client.ts        # Axios instance with auth interceptor
-│   │   └── authApi.ts       # Login/register/verify API calls
-│   └── utils/
-│       └── dataLoader.ts    # Builds the catalog item list
+│   │   ├── Login.tsx                  # Login form
+│   │   ├── Register.tsx               # Registration form
+│   │   └── DemoHub.tsx                # Landing page with modules
+│   ├── modules/
+│   │   ├── whiteboard/                # Whiteboard Module
+│   │   │   ├── pages/
+│   │   │   │   └── WhiteboardPage.tsx
+│   │   │   ├── components/
+│   │   │   │   ├── Whiteboard.tsx     # Drop zone canvas
+│   │   │   │   ├── WhiteboardItem.tsx # Resizable card
+│   │   │   │   ├── Navigation.tsx     # Left sidebar catalog
+│   │   │   │   ├── NavItem.tsx        # Draggable catalog item
+│   │   │   │   ├── PageFilters.tsx    # Global filter bar
+│   │   │   │   ├── FilterBar.tsx      # Filter chip bar
+│   │   │   │   ├── QueryPanel.tsx     # Query management panel
+│   │   │   │   ├── QueryModal.tsx     # New query form
+│   │   │   │   ├── Visualization.tsx  # Routes to table/chart
+│   │   │   │   ├── tables/            # Clinical data tables
+│   │   │   │   │   ├── SubjectTable.tsx
+│   │   │   │   │   ├── AETable.tsx
+│   │   │   │   │   ├── LabTable.tsx
+│   │   │   │   │   ├── ExposureTable.tsx
+│   │   │   │   │   ├── MedHistoryTable.tsx
+│   │   │   │   │   ├── ConmedTable.tsx
+│   │   │   │   │   ├── VisitGrid.tsx
+│   │   │   │   │   ├── ClickableSubjectCell.tsx
+│   │   │   │   │   └── tableConfig.tsx
+│   │   │   │   ├── charts/            # Recharts visualizations
+│   │   │   │   │   ├── AESummaryChart.tsx
+│   │   │   │   │   ├── AETimelineChart.tsx
+│   │   │   │   │   └── LabTrendChart.tsx
+│   │   │   │   └── panels/
+│   │   │   │       └── PatientProfile.tsx
+│   │   │   └── utils/
+│   │   │       └── dataLoader.ts      # Catalog item builder
+│   │   ├── agents/                    # AI Agents Module
+│   │   │   ├── pages/
+│   │   │   │   └── AgentsPage.tsx
+│   │   │   └── components/
+│   │   │       ├── AgentCard.tsx
+│   │   │       └── ConciergeChat.tsx
+│   │   └── concierge/                 # Concierge Module (placeholder)
+│   │       └── pages/
+│   │           └── ConciergePage.tsx
+│   └── shared/                        # Shared infrastructure
+│       ├── types.ts                   # TypeScript interfaces
+│       ├── theme.ts                   # MUI dark/light themes
+│       ├── store/                     # Redux store
+│       │   ├── index.ts              # Store config + typed hooks
+│       │   ├── authSlice.ts
+│       │   ├── themeSlice.ts
+│       │   ├── studySlice.ts
+│       │   ├── dataSlice.ts
+│       │   └── filterSlice.ts
+│       ├── components/                # Shared UI components
+│       │   ├── Header.tsx
+│       │   ├── StudySelector.tsx
+│       │   ├── StatsBar.tsx
+│       │   ├── NotificationPanel.tsx
+│       │   ├── DemoCard.tsx
+│       │   └── ProtectedRoute.tsx
+│       ├── hooks/
+│       │   ├── useFilteredData.ts
+│       │   └── useSyncFilters.ts
+│       └── services/api/
+│           ├── client.ts              # Axios + auth interceptor
+│           └── authApi.ts
+├── Dockerfile                         # Multi-stage Docker build
+├── cloudbuild.yaml                    # Google Cloud Build config
 ├── package.json
-├── vite.config.ts           # Vite config (path alias, API proxy)
+├── vite.config.ts                     # Vite config (path alias, API proxy)
 ├── tailwind.config.js
 └── tsconfig.json
 ```
+
+---
+
+## Deployment
+
+The app is containerized with a multi-stage Docker build and deploys to Google Cloud Platform via Cloud Build:
+
+- **Stage 1:** Builds the Vite/TypeScript frontend
+- **Stage 2:** Runs the Node.js backend serving the built static files
+- **CI/CD:** `cloudbuild.yaml` triggers on push to deploy to GCP
 
 ---
 
